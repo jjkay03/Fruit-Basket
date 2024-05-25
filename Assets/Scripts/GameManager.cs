@@ -22,7 +22,7 @@ public class GameManager : MonoBehaviour {
     /* ------------------------------- Unity Func ------------------------------- */
     // Start is called before the first frame update
     void Start() {
-        fruitsOrder = new GameObject[] { fruit0, fruit1 };
+        fruitsOrder = new GameObject[] { fruit0, fruit1, fruit2 };
     }
 
     // Update is called once per frame

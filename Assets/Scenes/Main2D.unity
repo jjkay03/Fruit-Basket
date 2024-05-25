@@ -670,6 +670,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fruit0: {fileID: 1511589013800936977, guid: 78e948778f8bb984f8dae7a9de7c6418, type: 3}
   fruit1: {fileID: 519106105941283179, guid: b739a8d79462f4e4fa009f33af3e0b1d, type: 3}
+  fruit2: {fileID: 519106105941283179, guid: 2f0d91874978d7c49810364041ccf92d, type: 3}
+  fruit3: {fileID: 0}
+  fruit4: {fileID: 0}
+  fruit5: {fileID: 0}
+  fruit6: {fileID: 0}
+  fruit7: {fileID: 0}
+  fruit8: {fileID: 0}
+  fruit9: {fileID: 0}
+  fruit10: {fileID: 0}
 --- !u!4 &2056140429
 Transform:
   m_ObjectHideFlags: 0
