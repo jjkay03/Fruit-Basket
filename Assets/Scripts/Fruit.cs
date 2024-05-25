@@ -29,6 +29,6 @@ public class Fruit : MonoBehaviour {
         otherFruit.collidedWithSameFruit = true;
 
         // Call the GameManager to handle the collision
-        gameManager.FruitCollided(gameObject, collision.gameObject, fruitID);
+        gameManager.SameFruitCollided(gameObject, collision.gameObject, fruitID);
     }
 }

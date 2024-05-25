@@ -668,8 +668,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ff3d1947ec23ef49ab4ae5ea94a9541, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fruit0: {fileID: 0}
-  fruit1: {fileID: 0}
+  fruit0: {fileID: 1511589013800936977, guid: 78e948778f8bb984f8dae7a9de7c6418, type: 3}
+  fruit1: {fileID: 519106105941283179, guid: b739a8d79462f4e4fa009f33af3e0b1d, type: 3}
 --- !u!4 &2056140429
 Transform:
   m_ObjectHideFlags: 0
