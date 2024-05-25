@@ -671,7 +671,7 @@ MonoBehaviour:
   fruit0: {fileID: 1511589013800936977, guid: 78e948778f8bb984f8dae7a9de7c6418, type: 3}
   fruit1: {fileID: 519106105941283179, guid: b739a8d79462f4e4fa009f33af3e0b1d, type: 3}
   fruit2: {fileID: 519106105941283179, guid: 2f0d91874978d7c49810364041ccf92d, type: 3}
-  fruit3: {fileID: 0}
+  fruit3: {fileID: 519106105941283179, guid: ac61c41da16d1eb46a5b1f6310044e14, type: 3}
   fruit4: {fileID: 0}
   fruit5: {fileID: 0}
   fruit6: {fileID: 0}
@@ -681,6 +681,7 @@ MonoBehaviour:
   fruit10: {fileID: 0}
   fruitsOrder: []
   fruitsPoints: 020000000400000006000000080000000a0000000c0000000e000000100000001400000016000000
+  particlesZ: -1
   particleFruitCollision: {fileID: 6987507487515563280, guid: cd7341f34cba4094b8a2bb7e8db48ac1, type: 3}
 --- !u!4 &2056140429
 Transform:
