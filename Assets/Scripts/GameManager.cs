@@ -22,6 +22,9 @@ public class GameManager : MonoBehaviour {
     public float particlesZ = -1;
     public ParticleSystem particleFruitCollision;
 
+    [Header("Others")]
+    public bool readyToDrop = true;
+
 
     /* ------------------------------- Unity Func ------------------------------- */
     // Start is called before the first frame update
