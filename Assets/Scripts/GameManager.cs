@@ -18,7 +18,8 @@ public class GameManager : MonoBehaviour {
     public GameObject[] fruitsOrder;
     public int[] fruitsPoints = { 2, 4, 6, 8, 10, 12, 14, 16, 20, 22};
 
-    [Header("Others")]
+    [Header("Particles")]
+    public float particlesZ = -1;
     public ParticleSystem particleFruitCollision;
 
 
@@ -92,9 +93,10 @@ public class GameManager : MonoBehaviour {
 
     // Coroutine that summons and gets rid of particleFruitCollision
     private IEnumerator SpawnParticleFruitCollision(Vector2 position) {
-        ParticleSystem particleInstance = Instantiate(particleFruitCollision, position, Quaternion.identity);
-        yield return new WaitForSeconds(particleInstance.main.duration);
-        Destroy(particleInstance.gameObject);
+        Vector3 spawnPosition = new Vector3(position.x, position.y, particlesZ);
+        ParticleSystem particleInstance = Instantiate(particleFruitCollision, spawnPosition, Quaternion.identity);
+        yield return new WaitForSeconds(particleInstance.main.duration); // Wait for the duration of the particle system        
+        Destroy(particleInstance.gameObject); // Destroy the particle system
     }
 
 }
