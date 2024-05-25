@@ -1,5 +1,5 @@
-using Unity.VisualScripting;
 using UnityEngine;
+using System.Collections;
 
 public class GameManager : MonoBehaviour {
     /* -------------------------------- Variables ------------------------------- */
@@ -15,8 +15,11 @@ public class GameManager : MonoBehaviour {
     public GameObject fruit8;
     public GameObject fruit9;
     public GameObject fruit10;
-    
-    private GameObject[] fruitsOrder;
+    public GameObject[] fruitsOrder;
+    public int[] fruitsPoints = { 2, 4, 6, 8, 10, 12, 14, 16, 20, 22};
+
+    [Header("Others")]
+    public ParticleSystem particleFruitCollision;
 
 
     /* ------------------------------- Unity Func ------------------------------- */
@@ -37,12 +40,34 @@ public class GameManager : MonoBehaviour {
         // Print the names of the colliding objects
         Debug.Log("Fruit collided: " + selfFruit.name + " & " + otherFruit.name);
 
+        // Play animation
+        StartCoroutine(SameFruitCollidedAnimation(selfFruit, otherFruit, fruitID));
+    }
+
+    // Coroutine to animate the fruits on collision
+    private IEnumerator SameFruitCollidedAnimation(GameObject selfFruit, GameObject otherFruit, int fruitID) {
+        float scaleIncrement = 0.05f;
+
+        // Change fruit scale
+        selfFruit.transform.localScale = selfFruit.transform.localScale + new Vector3(scaleIncrement, scaleIncrement, scaleIncrement);
+        otherFruit.transform.localScale = otherFruit.transform.localScale + new Vector3(scaleIncrement, scaleIncrement, scaleIncrement);
+        
+        // Get SpriteRenderer components and change colors to white
+        // TODO: MAKE THE FRUIT FLASH WHITE
+
+        // Spwan particles
+        Vector2 midpoint = (selfFruit.transform.position + otherFruit.transform.position) / 2f; // Position between fruits
+        StartCoroutine(SpawnParticleFruitCollision(midpoint));
+
+        // Wait for a short duration
+        yield return new WaitForSeconds(0.05f);
+
         // Destroy both fruits
-        Destroy(selfFruit); Destroy(otherFruit);
+        Destroy(selfFruit);
+        Destroy(otherFruit);
 
         // Summon new fruit
         SummonNewFruit(selfFruit, otherFruit, fruitID);
-        
     }
 
     // Function that summon a new fruit
@@ -50,10 +75,7 @@ public class GameManager : MonoBehaviour {
         fruitID += 1;
 
         // Check if fruitID is within valid range
-        if (!(fruitID >= 0 && fruitID < fruitsOrder.Length)) {
-            Debug.LogWarning("Invalid fruitID for fruitsOrder array!");
-            return; // End the function
-        }
+        if (!(fruitID >= 0 && fruitID < fruitsOrder.Length)) return;
 
         // Get the next fruit prefab from the array
         GameObject nextFruitPrefab = fruitsOrder[fruitID];
@@ -67,4 +89,12 @@ public class GameManager : MonoBehaviour {
         // Log the name of the next fruit spawned
         Debug.Log("Next fruit spawned: " + nextFruit.name);  
     }
+
+    // Coroutine that summons and gets rid of particleFruitCollision
+    private IEnumerator SpawnParticleFruitCollision(Vector2 position) {
+        ParticleSystem particleInstance = Instantiate(particleFruitCollision, position, Quaternion.identity);
+        yield return new WaitForSeconds(particleInstance.main.duration);
+        Destroy(particleInstance.gameObject);
+    }
+
 }
