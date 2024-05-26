@@ -477,7 +477,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1014945199}
   - component: {fileID: 1014945201}
-  - component: {fileID: 1014945200}
   m_Layer: 0
   m_Name: Droper Line
   m_TagString: Untagged
@@ -500,51 +499,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1181340367}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!61 &1014945200
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1014945198}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: -0.9584663, y: 0.26277453}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
-    newSize: {x: 1, y: 1}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 2.9169326, y: 1.5255488}
-  m_EdgeRadius: 0
 --- !u!212 &1014945201
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -643,6 +597,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d7cf7e86dc90ec4b8b4c3f055de8f35, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dropperBody: {fileID: 29055092}
+  dropperLine: {fileID: 1014945198}
   maxLeftX: -2.5
   maxRightX: 2.5
   moveSpeed: 5
@@ -945,6 +901,9 @@ MonoBehaviour:
   fruit8: {fileID: 0}
   fruit9: {fileID: 0}
   fruit10: {fileID: 0}
+  fruitsOrder: []
+  fruitsDroppable: []
+  fruitsQueue: []
   fruitsPoints: 020000000400000006000000080000000a0000000c0000000e000000100000001400000016000000
   particlesZ: -1
   particleFruitCollision: {fileID: 6987507487515563280, guid: cd7341f34cba4094b8a2bb7e8db48ac1, type: 3}
