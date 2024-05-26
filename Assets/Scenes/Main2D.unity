@@ -932,15 +932,16 @@ MonoBehaviour:
   fruit3: {fileID: 519106105941283179, guid: ac61c41da16d1eb46a5b1f6310044e14, type: 3}
   fruit4: {fileID: 519106105941283179, guid: 563affa986e65a14382bc596db0c13de, type: 3}
   fruit5: {fileID: 519106105941283179, guid: de0ccaea5c3094d44874904b2582a05f, type: 3}
-  fruit6: {fileID: 0}
-  fruit7: {fileID: 0}
-  fruit8: {fileID: 0}
-  fruit9: {fileID: 0}
-  fruit10: {fileID: 0}
+  fruit6: {fileID: 519106105941283179, guid: fa8c8bdebbfb7614fabf6fc4b5231ea8, type: 3}
+  fruit7: {fileID: 519106105941283179, guid: ba6f1e92eaaf7a845b7e59103398525b, type: 3}
+  fruit8: {fileID: 519106105941283179, guid: ec73bcc43c6148245a826931693c87d0, type: 3}
+  fruit9: {fileID: 519106105941283179, guid: 53348684c1a6b1747813ca733a349682, type: 3}
+  fruit10: {fileID: 519106105941283179, guid: ca1894a01b2590f4f8ad2bf6be204499, type: 3}
   fruitsOrder: []
   fruitsDroppable: []
   fruitsQueue: []
   fruitsPoints: 020000000400000006000000080000000a0000000c0000000e000000100000001400000016000000
+  fruitsMurgeBonusPoints: 0100000002000000030000000400000005000000060000000700000008000000090000000a0000000b000000
   particlesZ: -1
   particleFruitCollision: {fileID: 6987507487515563280, guid: cd7341f34cba4094b8a2bb7e8db48ac1, type: 3}
   score: 0

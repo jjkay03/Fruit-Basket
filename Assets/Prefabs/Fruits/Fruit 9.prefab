@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 3987011794568069444}
   - component: {fileID: 2934728546788379515}
   m_Layer: 0
-  m_Name: Fruit 5
+  m_Name: Fruit 9
   m_TagString: Fruit
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -76,7 +76,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 8eee0e67843d9e84cbe0aca9836d5462, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 2eab4874d2e7afd46991d6f4fa308c67, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -146,9 +146,9 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.0046253204, y: 0.0128977}
+  m_Offset: {x: -0.009651631, y: 0.015849173}
   serializedVersion: 2
-  m_Radius: 1.6262474
+  m_Radius: 2.4143624
 --- !u!114 &2934728546788379515
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -161,5 +161,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ddc021d81c7019e4db63f9d51b75a073, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fruitID: 5
+  fruitID: 9
   collidedWithSameFruit: 0
