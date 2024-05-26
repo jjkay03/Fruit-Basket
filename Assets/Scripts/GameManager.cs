@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class GameManager : MonoBehaviour {
     /* -------------------------------- Variables ------------------------------- */
@@ -16,6 +17,8 @@ public class GameManager : MonoBehaviour {
     public GameObject fruit9;
     public GameObject fruit10;
     public GameObject[] fruitsOrder;
+    public GameObject[] fruitsDroppable;
+    public List<GameObject> fruitsQueue;
     public int[] fruitsPoints = { 2, 4, 6, 8, 10, 12, 14, 16, 20, 22};
 
     [Header("Particles")]
@@ -29,7 +32,12 @@ public class GameManager : MonoBehaviour {
     /* ------------------------------- Unity Func ------------------------------- */
     // Start is called before the first frame update
     void Start() {
+        // Create fruit order list
         fruitsOrder = new GameObject[] { fruit0, fruit1, fruit2, fruit3 };
+        // Create droppable druits list
+        fruitsDroppable = new GameObject[] { fruit0, fruit1, fruit2, fruit3 };
+        // Create starting fruit queue
+        fruitsQueue = new List<GameObject> { fruit0, fruit0 };
     }
 
     // Update is called once per frame
@@ -102,4 +110,10 @@ public class GameManager : MonoBehaviour {
         Destroy(particleInstance.gameObject); // Destroy the particle system
     }
 
+    // Function that adds a random fruit to the queue
+    public void AddRandomFruitToQueue() {
+        int randomIndex = Random.Range(0, fruitsDroppable.Length);
+        GameObject randomFruit = fruitsDroppable[randomIndex];
+        fruitsQueue.Add(randomFruit);
+    }
 }

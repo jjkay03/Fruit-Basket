@@ -11,6 +11,7 @@ public class Fruit : MonoBehaviour {
     /* ------------------------------- Unity Func ------------------------------- */
     // Start is called before the first frame update
     void Start() {
+        // Get game manager
         gameManager = FindObjectOfType<GameManager>();
     }
 

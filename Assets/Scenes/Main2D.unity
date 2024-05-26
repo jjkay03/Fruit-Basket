@@ -133,7 +133,6 @@ GameObject:
   m_Component:
   - component: {fileID: 29055093}
   - component: {fileID: 29055095}
-  - component: {fileID: 29055094}
   m_Layer: 0
   m_Name: Droper Body
   m_TagString: Untagged
@@ -150,47 +149,12 @@ Transform:
   m_GameObject: {fileID: 29055092}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 4.2, z: -1}
+  m_LocalPosition: {x: 0, y: 3.8, z: -1}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1181340367}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!58 &29055094
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 29055092}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 0.5
 --- !u!212 &29055095
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -530,8 +494,8 @@ Transform:
   m_GameObject: {fileID: 1014945198}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.2, z: 1}
-  m_LocalScale: {x: 0.05, y: 9, z: 0.5}
+  m_LocalPosition: {x: 0, y: -0.4, z: 1}
+  m_LocalScale: {x: 0.05, y: 8.5, z: 0.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1181340367}
@@ -679,7 +643,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d7cf7e86dc90ec4b8b4c3f055de8f35, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dropperBody: {fileID: 29055092}
+  maxLeftX: -2.5
+  maxRightX: 2.5
+  moveSpeed: 5
+  leftKey: 1401000061000000
+  rightKey: 1301000064000000
+  dropKey: 2000000073000000
 --- !u!1 &1243139850
 GameObject:
   m_ObjectHideFlags: 0
@@ -976,7 +945,6 @@ MonoBehaviour:
   fruit8: {fileID: 0}
   fruit9: {fileID: 0}
   fruit10: {fileID: 0}
-  fruitsOrder: []
   fruitsPoints: 020000000400000006000000080000000a0000000c0000000e000000100000001400000016000000
   particlesZ: -1
   particleFruitCollision: {fileID: 6987507487515563280, guid: cd7341f34cba4094b8a2bb7e8db48ac1, type: 3}
