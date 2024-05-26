@@ -23,7 +23,6 @@ public class GameManager : MonoBehaviour {
     public int[] fruitsPoints = { 0, 1, 3, 6, 10, 15, 21, 28, 36, 45, 55};
     public int[] fruitsMurgeBonusPoints = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11};
 
-
     [Header("Particles")]
     public float particlesZ = -2;
     public ParticleSystem particleFruitCollision;
@@ -53,9 +52,6 @@ public class GameManager : MonoBehaviour {
     /* -------------------------------- Functions ------------------------------- */
     // Function handles two similar fruits colliding
     public void SameFruitCollided(GameObject selfFruit, GameObject otherFruit, int fruitID) {
-        // Print the names of the colliding objects
-        //Debug.Log("Fruit collided: " + selfFruit.name + " & " + otherFruit.name);
-
         // Play animation
         StartCoroutine(SameFruitCollidedAnimation(selfFruit, otherFruit, fruitID));
 
@@ -104,10 +100,7 @@ public class GameManager : MonoBehaviour {
 
         // Spawn the murgedFruit at the midpoint position
         GameObject murgedFruit = Instantiate(nextFruitPrefab, midpoint, Quaternion.identity);
-        murgedFruit.transform.SetParent(fruitsContainer.transform);
-
-        // Log the name of the next fruit spawned
-        //Debug.Log("Murged fruit spawned: " + murgedFruit.name);  
+        murgedFruit.transform.SetParent(fruitsContainer.transform); 
     }
 
     // Coroutine that summons and gets rid of particleFruitCollision

@@ -139,9 +139,12 @@ public class Dropper : MonoBehaviour {
         foreach (Collider2D collider in colliders) {
             if (collider.gameObject == dropFruit) continue;
 
-            // Fruit collided
-            dropFruitCollided = true;
-            return true;
+            // Check for specific tags
+            if (collider.CompareTag("Floor") || collider.CompareTag("Fruit")) {
+                // Fruit collided with floor or another fruit
+                dropFruitCollided = true;
+                return true;
+            }
         }
         return false;
     }

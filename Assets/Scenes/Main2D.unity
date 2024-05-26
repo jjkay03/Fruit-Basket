@@ -219,7 +219,7 @@ GameObject:
   - component: {fileID: 710932456}
   - component: {fileID: 710932455}
   m_Layer: 0
-  m_Name: Wall (1)
+  m_Name: Wall Left
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -234,7 +234,7 @@ Transform:
   m_GameObject: {fileID: 710932453}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -3, y: -0.85, z: 0}
+  m_LocalPosition: {x: -4, y: -0.85, z: 0}
   m_LocalScale: {x: 0.2, y: 8, z: 0.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -349,8 +349,8 @@ GameObject:
   - component: {fileID: 895346743}
   - component: {fileID: 895346742}
   m_Layer: 0
-  m_Name: Wall (3)
-  m_TagString: Untagged
+  m_Name: Floor
+  m_TagString: Floor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -365,7 +365,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
   m_LocalPosition: {x: 0, y: -4.75, z: 0}
-  m_LocalScale: {x: 0.2, y: 6.2, z: 0.5}
+  m_LocalScale: {x: 0.2, y: 8, z: 0.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1243139851}
@@ -599,8 +599,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dropperBody: {fileID: 29055092}
   dropperLine: {fileID: 1014945198}
-  maxLeftX: -2.5
-  maxRightX: 2.5
+  maxLeftX: -3.5
+  maxRightX: 3.5
   moveSpeed: 5
   fruitZ: -1
   fruitsContainer: {fileID: 1302169041}
@@ -778,7 +778,7 @@ GameObject:
   - component: {fileID: 1950031658}
   - component: {fileID: 1950031657}
   m_Layer: 0
-  m_Name: Wall (2)
+  m_Name: Wall Right
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -793,7 +793,7 @@ Transform:
   m_GameObject: {fileID: 1950031655}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 3, y: -0.85, z: 0}
+  m_LocalPosition: {x: 4, y: -0.85, z: 0}
   m_LocalScale: {x: 0.2, y: 8, z: 0.5}
   m_ConstrainProportionsScale: 0
   m_Children: []

@@ -162,4 +162,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fruitID: 9
-  collidedWithSameFruit: 1
+  collidedWithSameFruit: 0
