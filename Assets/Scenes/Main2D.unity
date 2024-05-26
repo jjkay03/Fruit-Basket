@@ -149,7 +149,7 @@ Transform:
   m_GameObject: {fileID: 29055092}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 3.8, z: -1}
+  m_LocalPosition: {x: 0, y: 3.8, z: 1}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -602,6 +602,8 @@ MonoBehaviour:
   maxLeftX: -2.5
   maxRightX: 2.5
   moveSpeed: 5
+  droppedFruit: {fileID: 0}
+  droppedFruitCollided: 0
   leftKey: 1401000061000000
   rightKey: 1301000064000000
   dropKey: 2000000073000000
@@ -637,6 +639,37 @@ Transform:
   - {fileID: 710932454}
   - {fileID: 1950031656}
   - {fileID: 895346741}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1302169041
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1302169042}
+  m_Layer: 0
+  m_Name: Fruits Container
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1302169042
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1302169041}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.8128832, y: -0.4269225, z: -0.031173972}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1756197439
@@ -894,8 +927,8 @@ MonoBehaviour:
   fruit1: {fileID: 519106105941283179, guid: b739a8d79462f4e4fa009f33af3e0b1d, type: 3}
   fruit2: {fileID: 519106105941283179, guid: 2f0d91874978d7c49810364041ccf92d, type: 3}
   fruit3: {fileID: 519106105941283179, guid: ac61c41da16d1eb46a5b1f6310044e14, type: 3}
-  fruit4: {fileID: 0}
-  fruit5: {fileID: 0}
+  fruit4: {fileID: 519106105941283179, guid: 563affa986e65a14382bc596db0c13de, type: 3}
+  fruit5: {fileID: 519106105941283179, guid: de0ccaea5c3094d44874904b2582a05f, type: 3}
   fruit6: {fileID: 0}
   fruit7: {fileID: 0}
   fruit8: {fileID: 0}
@@ -907,6 +940,7 @@ MonoBehaviour:
   fruitsPoints: 020000000400000006000000080000000a0000000c0000000e000000100000001400000016000000
   particlesZ: -1
   particleFruitCollision: {fileID: 6987507487515563280, guid: cd7341f34cba4094b8a2bb7e8db48ac1, type: 3}
+  score: 0
   readyToDrop: 1
 --- !u!4 &2056140429
 Transform:
@@ -931,3 +965,4 @@ SceneRoots:
   - {fileID: 1756197442}
   - {fileID: 1181340367}
   - {fileID: 1243139851}
+  - {fileID: 1302169042}

@@ -26,6 +26,7 @@ public class GameManager : MonoBehaviour {
     public ParticleSystem particleFruitCollision;
 
     [Header("Others")]
+    public int score = 0;
     public bool readyToDrop = true;
 
 
@@ -33,7 +34,7 @@ public class GameManager : MonoBehaviour {
     // Start is called before the first frame update
     void Start() {
         // Create fruit order list
-        fruitsOrder = new GameObject[] { fruit0, fruit1, fruit2, fruit3 };
+        fruitsOrder = new GameObject[] { fruit0, fruit1, fruit2, fruit3, fruit4, fruit5 };
         // Create droppable druits list
         fruitsDroppable = new GameObject[] { fruit0, fruit1, fruit2, fruit3 };
         // Create starting fruit queue

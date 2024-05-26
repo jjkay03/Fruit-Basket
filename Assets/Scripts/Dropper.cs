@@ -8,11 +8,16 @@ public class Dropper : MonoBehaviour {
     public float maxLeftX = -2.5f;
     public float maxRightX = 2.5f;
     public float moveSpeed = 5f; // Speed at which the dropper moves
+    
+    [Header("Dropped Fruit")]
+    public GameObject fruitsContainer;
+    public GameObject dropFruit;
+    public bool dropFruitCollided = false;
 
     [Header("Keybinds")]
     public KeyCode[] leftKey = { KeyCode.LeftArrow,  KeyCode.A };
     public KeyCode[] rightKey = { KeyCode.RightArrow, KeyCode.D };
-    public KeyCode[] dropKey = { KeyCode.Space, KeyCode.S };
+    public KeyCode[] dropKey = { KeyCode.Space,KeyCode.DownArrow, KeyCode.S };
 
     private GameManager gameManager;
 
@@ -28,6 +33,7 @@ public class Dropper : MonoBehaviour {
     void Update() {
         PlayerImputMoveDropper();
         PlayerImputDrop();
+        CheckDroppedFruitCollision();
         HideLine();
     }
 
@@ -71,6 +77,12 @@ public class Dropper : MonoBehaviour {
         }
     }
 
+    // Place the drop fruit on the droper
+    void PlaceDropFruit() {
+        // Take the first fruit in the queue and remove it from the queue
+        GameObject fruitToDrop = gameManager.fruitsQueue[0];
+    }
+
     // Function that drops the fruit in line
     void DropFruit() {
         // End if fruit queue is somehow empty
@@ -84,13 +96,33 @@ public class Dropper : MonoBehaviour {
         gameManager.fruitsQueue.RemoveAt(0);
 
         // Instantiate the fruit
-        Instantiate(fruitToDrop, dropperBody.transform.position, Quaternion.identity);
+        dropFruit = Instantiate(fruitToDrop, dropperBody.transform.position, Quaternion.identity);
+        dropFruitCollided = false;
 
         // Switch ready to drop to false
-        //gameManager.readyToDrop = false;
+        gameManager.readyToDrop = false;
 
         // Add a new fruit to the queue
         gameManager.AddRandomFruitToQueue();
+    }
+
+    // Function that checks if the droped druit collided
+    void CheckDroppedFruitCollision() {
+        if (dropFruit != null && !dropFruitCollided) {
+            Collider2D fruitCollider = dropFruit.GetComponent<Collider2D>();
+
+            if (fruitCollider != null) {
+                // Check for collisions
+                Collider2D[] colliders = Physics2D.OverlapBoxAll(fruitCollider.bounds.center, fruitCollider.bounds.size, 0f);
+                foreach (Collider2D collider in colliders) {
+                    if (collider.gameObject != dropFruit) {
+                        dropFruitCollided = true;
+                        gameManager.readyToDrop = true;
+                        break;
+                    }
+                }
+            }
+        }
     }
 
     // Function that hides the dropper line if not ready to drop
