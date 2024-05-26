@@ -20,7 +20,9 @@ public class GameManager : MonoBehaviour {
     public GameObject[] fruitsOrder;
     public GameObject[] fruitsDroppable;
     public List<GameObject> fruitsQueue;
-    public int[] fruitsPoints = { 2, 4, 6, 8, 10, 12, 14, 16, 20, 22};
+    public int[] fruitsPoints = { 0, 1, 3, 6, 10, 15, 21, 28, 36, 45, 55};
+    public int[] fruitsMurgeBonusPoints = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11};
+
 
     [Header("Particles")]
     public float particlesZ = -2;
@@ -52,10 +54,13 @@ public class GameManager : MonoBehaviour {
     // Function handles two similar fruits colliding
     public void SameFruitCollided(GameObject selfFruit, GameObject otherFruit, int fruitID) {
         // Print the names of the colliding objects
-        Debug.Log("Fruit collided: " + selfFruit.name + " & " + otherFruit.name);
+        //Debug.Log("Fruit collided: " + selfFruit.name + " & " + otherFruit.name);
 
         // Play animation
         StartCoroutine(SameFruitCollidedAnimation(selfFruit, otherFruit, fruitID));
+
+        // Add points to score
+        CalculatePoint(fruitID, true);
     }
 
     // Coroutine to animate the fruits on collision
@@ -102,7 +107,7 @@ public class GameManager : MonoBehaviour {
         murgedFruit.transform.SetParent(fruitsContainer.transform);
 
         // Log the name of the next fruit spawned
-        Debug.Log("Murged fruit spawned: " + murgedFruit.name);  
+        //Debug.Log("Murged fruit spawned: " + murgedFruit.name);  
     }
 
     // Coroutine that summons and gets rid of particleFruitCollision
@@ -118,5 +123,11 @@ public class GameManager : MonoBehaviour {
         int randomIndex = Random.Range(0, fruitsDroppable.Length);
         GameObject randomFruit = fruitsDroppable[randomIndex];
         fruitsQueue.Add(randomFruit);
+    }
+
+    // Function that calculate the point gained from fruits
+    private void CalculatePoint(int fruitID, bool murge=false) {
+        if (murge) {score += fruitsMurgeBonusPoints[fruitID];}
+        score += fruitsPoints[fruitID];
     }
 }
