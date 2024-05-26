@@ -5,6 +5,7 @@ using System.Collections.Generic;
 public class GameManager : MonoBehaviour {
     /* -------------------------------- Variables ------------------------------- */
     [Header("Fruits")]
+    public GameObject fruitsContainer;
     public GameObject fruit0;
     public GameObject fruit1;
     public GameObject fruit2;
@@ -22,7 +23,7 @@ public class GameManager : MonoBehaviour {
     public int[] fruitsPoints = { 2, 4, 6, 8, 10, 12, 14, 16, 20, 22};
 
     [Header("Particles")]
-    public float particlesZ = -1;
+    public float particlesZ = -2;
     public ParticleSystem particleFruitCollision;
 
     [Header("Others")]
@@ -79,12 +80,12 @@ public class GameManager : MonoBehaviour {
         Destroy(selfFruit);
         Destroy(otherFruit);
 
-        // Summon new fruit
-        SummonNewFruit(selfFruit, otherFruit, fruitID);
+        // Murge two fruits
+        MurgeFruits(selfFruit, otherFruit, fruitID);
     }
 
-    // Function that summon a new fruit
-    void SummonNewFruit(GameObject selfFruit, GameObject otherFruit, int fruitID) {
+    // Function that summon a new fruit by murging two of them
+    void MurgeFruits(GameObject selfFruit, GameObject otherFruit, int fruitID) {
         fruitID += 1;
 
         // Check if fruitID is within valid range
@@ -96,11 +97,12 @@ public class GameManager : MonoBehaviour {
         // Calculate midpoint position between selfFruit and otherFruit
         Vector2 midpoint = (selfFruit.transform.position + otherFruit.transform.position) / 2f;
 
-        // Spawn the nextFruit at the midpoint position
-        GameObject nextFruit = Instantiate(nextFruitPrefab, midpoint, Quaternion.identity);
+        // Spawn the murgedFruit at the midpoint position
+        GameObject murgedFruit = Instantiate(nextFruitPrefab, midpoint, Quaternion.identity);
+        murgedFruit.transform.SetParent(fruitsContainer.transform);
 
         // Log the name of the next fruit spawned
-        Debug.Log("Next fruit spawned: " + nextFruit.name);  
+        Debug.Log("Murged fruit spawned: " + murgedFruit.name);  
     }
 
     // Coroutine that summons and gets rid of particleFruitCollision

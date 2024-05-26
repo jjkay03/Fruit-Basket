@@ -150,7 +150,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 3.8, z: 1}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1181340367}
@@ -602,11 +602,13 @@ MonoBehaviour:
   maxLeftX: -2.5
   maxRightX: 2.5
   moveSpeed: 5
-  droppedFruit: {fileID: 0}
-  droppedFruitCollided: 0
+  fruitZ: -1
+  fruitsContainer: {fileID: 1302169041}
+  dropFruit: {fileID: 0}
+  dropFruitCollided: 0
   leftKey: 1401000061000000
   rightKey: 1301000064000000
-  dropKey: 2000000073000000
+  dropKey: 200000001201000073000000
 --- !u!1 &1243139850
 GameObject:
   m_ObjectHideFlags: 0
@@ -923,6 +925,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ff3d1947ec23ef49ab4ae5ea94a9541, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fruitsContainer: {fileID: 1302169041}
   fruit0: {fileID: 1511589013800936977, guid: 78e948778f8bb984f8dae7a9de7c6418, type: 3}
   fruit1: {fileID: 519106105941283179, guid: b739a8d79462f4e4fa009f33af3e0b1d, type: 3}
   fruit2: {fileID: 519106105941283179, guid: 2f0d91874978d7c49810364041ccf92d, type: 3}
