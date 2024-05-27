@@ -30,6 +30,7 @@ public class GameManager : MonoBehaviour {
     [Header("Others")]
     public int score = 0;
     public bool readyToDrop = true;
+    public float fruitDestryScaleIncrement = 0.05f;
 
 
     /* ------------------------------- Unity Func ------------------------------- */
@@ -48,7 +49,8 @@ public class GameManager : MonoBehaviour {
 
     // Update is called once per frame
     void Update() {
-        
+        // DEBUG KEY
+        if (Input.GetKeyDown(KeyCode.Tab)) StartCoroutine(ClearBoard());
     }
 
 
@@ -63,12 +65,12 @@ public class GameManager : MonoBehaviour {
     }
 
     // Coroutine to animate the fruits on collision
-    private IEnumerator SameFruitCollidedAnimation(GameObject selfFruit, GameObject otherFruit, int fruitID) {
-        float scaleIncrement = 0.05f;
+    IEnumerator SameFruitCollidedAnimation(GameObject selfFruit, GameObject otherFruit, int fruitID) {
+        float fruitDestryScaleIncrement = 0.05f;
 
         // Change fruit scale
-        selfFruit.transform.localScale = selfFruit.transform.localScale + new Vector3(scaleIncrement, scaleIncrement, scaleIncrement);
-        otherFruit.transform.localScale = otherFruit.transform.localScale + new Vector3(scaleIncrement, scaleIncrement, scaleIncrement);
+        selfFruit.transform.localScale = selfFruit.transform.localScale + new Vector3(fruitDestryScaleIncrement, fruitDestryScaleIncrement, fruitDestryScaleIncrement);
+        otherFruit.transform.localScale = otherFruit.transform.localScale + new Vector3(fruitDestryScaleIncrement, fruitDestryScaleIncrement, fruitDestryScaleIncrement);
         
         // Get SpriteRenderer components and change colors to white
         // TODO: MAKE THE FRUIT FLASH WHITE
@@ -135,8 +137,39 @@ public class GameManager : MonoBehaviour {
     }
 
     // Function that calculate the point gained from fruits
-    private void CalculatePoint(int fruitID, bool merge=false) {
+    void CalculatePoint(int fruitID, bool merge=false) {
         if (merge) {score += fruitsMergeBonusPoints[fruitID];}
         score += fruitsPoints[fruitID];
     }
+
+    // Coroutine to destroy all fruits
+    IEnumerator ClearBoard(float destroyDelay = 0.05f) {
+        Transform containerTransform = fruitsContainer.transform;
+        int childCount = containerTransform.childCount;
+        
+        // Iterate through each child object backwards
+        for (int i = childCount - 1; i >= 0; i--) {
+            // Get the child object at index i
+            GameObject fruitObject = containerTransform.GetChild(i).gameObject;
+            
+            // Get the fruit ID from the FruitScript attached to the fruitObject
+            Fruit fruitScript = fruitObject.GetComponent<Fruit>();
+            int fruitID = fruitScript.fruitID;
+
+            // Animation
+            fruitObject.transform.localScale = fruitObject.transform.localScale + new Vector3(fruitDestryScaleIncrement, fruitDestryScaleIncrement, fruitDestryScaleIncrement);
+            StartCoroutine(SpawnParticleFruitCollision(fruitObject.transform.position));
+
+            // Wait for a little before going to next fruit and destroying
+            yield return new WaitForSeconds(destroyDelay);
+
+            // Calculate point from fruit and destroy it
+            CalculatePoint(fruitID);
+            Destroy(fruitObject);
+
+            
+            
+        }
+    }
+
 }
