@@ -25,11 +25,17 @@ public class GameManager : MonoBehaviour {
 
     [Header("Particles")]
     public float particlesZ = -2;
+    public GameObject particlesContainer;
     public ParticleSystem particleFruitCollision;
 
+    [Header("Audio")]
+    public GameObject audioContainer;
+    public GameObject audioSource;
+    public AudioClip SFX_fruitMurge;
+
     [Header("Others")]
-    public int score = 0;
     public bool readyToDrop = true;
+    public int score = 0;
     public float fruitDestryScaleIncrement = 0.05f;
 
 
@@ -78,6 +84,9 @@ public class GameManager : MonoBehaviour {
         Vector2 midpoint = (selfFruit.transform.position + otherFruit.transform.position) / 2f; // Position between fruits
         StartCoroutine(SpawnParticleFruitCollision(midpoint));
 
+        // Play SFX
+        PlaySFX(SFX_fruitMurge, true, 0.8f, 1.2f);
+
         // Wait for a short duration
         yield return new WaitForSeconds(0.05f);
 
@@ -121,6 +130,7 @@ public class GameManager : MonoBehaviour {
     private IEnumerator SpawnParticleFruitCollision(Vector2 position) {
         Vector3 spawnPosition = new Vector3(position.x, position.y, particlesZ);
         ParticleSystem particleInstance = Instantiate(particleFruitCollision, spawnPosition, Quaternion.identity);
+        particleInstance.transform.SetParent(particlesContainer.transform); // Set particlesContainer as parent
         yield return new WaitForSeconds(particleInstance.main.duration); // Wait for the duration of the particle system        
         Destroy(particleInstance.gameObject); // Destroy the particle system
     }
@@ -186,4 +196,21 @@ public class GameManager : MonoBehaviour {
         }
     }
 
+    // Function that plays the SFX
+    void PlaySFX(AudioClip audioClip, bool pitchRange=false, float pitch1=0f, float pitch2=0f ) {
+        // Create audio source object as child of audioContainer
+        GameObject localAudioSource = Instantiate(audioSource);
+        localAudioSource.transform.SetParent(audioContainer.transform); // Set audioContainer as parent
+        AudioSource localAudioSourceComponent = localAudioSource.GetComponent<AudioSource>(); // Get component
+
+        // Change pitch if pitchRange true
+        if (pitchRange) localAudioSourceComponent.pitch = Random.Range(pitch1, pitch2);
+
+        // Play sound
+        localAudioSourceComponent.clip = audioClip;
+        localAudioSourceComponent.Play();
+
+        // Destroy object
+        Destroy(localAudioSource, localAudioSourceComponent.clip.length);
+    }
 }
