@@ -29,9 +29,11 @@ public class GameManager : MonoBehaviour {
     public ParticleSystem particleFruitCollision;
 
     [Header("Audio")]
+    public float volumeSFX = 1; // Between 0->1
     public GameObject audioContainer;
     public GameObject audioSource;
     public AudioClip SFX_fruitMurge;
+    public AudioClip SFX_fruit10Murge;
 
     [Header("Others")]
     public bool readyToDrop = true;
@@ -76,9 +78,6 @@ public class GameManager : MonoBehaviour {
         // Change fruit scale
         selfFruit.transform.localScale = selfFruit.transform.localScale + new Vector3(fruitDestryScaleIncrement, fruitDestryScaleIncrement, fruitDestryScaleIncrement);
         otherFruit.transform.localScale = otherFruit.transform.localScale + new Vector3(fruitDestryScaleIncrement, fruitDestryScaleIncrement, fruitDestryScaleIncrement);
-        
-        // Get SpriteRenderer components and change colors to white
-        // TODO: MAKE THE FRUIT FLASH WHITE
 
         // Spwan particles
         Vector2 midpoint = (selfFruit.transform.position + otherFruit.transform.position) / 2f; // Position between fruits
@@ -121,6 +120,9 @@ public class GameManager : MonoBehaviour {
         
         // Clear board if fruitID = 10 (water melon)
         else if (fruitID == 10) {
+            // Play fruit10 murge sound
+            PlaySFX(SFX_fruit10Murge);
+            
             // Clear board
             StartCoroutine(ClearBoard());
         }
@@ -187,6 +189,9 @@ public class GameManager : MonoBehaviour {
             fruitObject.transform.localScale = fruitObject.transform.localScale + new Vector3(fruitDestryScaleIncrement, fruitDestryScaleIncrement, fruitDestryScaleIncrement);
             StartCoroutine(SpawnParticleFruitCollision(fruitObject.transform.position));
 
+            // Play SFX
+            PlaySFX(SFX_fruitMurge, true, 0.8f, 1.2f);
+
             // Wait for a little before going to next fruit and destroying
             yield return new WaitForSeconds(destroyDelay);
 
@@ -207,6 +212,7 @@ public class GameManager : MonoBehaviour {
         if (pitchRange) localAudioSourceComponent.pitch = Random.Range(pitch1, pitch2);
 
         // Play sound
+        localAudioSourceComponent.volume = volumeSFX;
         localAudioSourceComponent.clip = audioClip;
         localAudioSourceComponent.Play();
 
