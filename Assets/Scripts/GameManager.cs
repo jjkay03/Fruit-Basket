@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 
 public class GameManager : MonoBehaviour {
     /* -------------------------------- Variables ------------------------------- */
@@ -35,9 +36,12 @@ public class GameManager : MonoBehaviour {
     public AudioClip SFX_fruitMurge;
     public AudioClip SFX_fruit10Murge;
 
+    [Header("Score")]
+    public int score = 0;
+    public TextMeshProUGUI textScore;
+
     [Header("Others")]
     public bool readyToDrop = true;
-    public int score = 0;
     public float fruitDestryScaleIncrement = 0.05f;
 
 
@@ -57,7 +61,8 @@ public class GameManager : MonoBehaviour {
 
     // Update is called once per frame
     void Update() {
-
+        // Update score on screen
+        textScore.text = score.ToString();
     }
 
 
@@ -219,4 +224,5 @@ public class GameManager : MonoBehaviour {
         // Destroy object
         Destroy(localAudioSource, localAudioSourceComponent.clip.length);
     }
+
 }
