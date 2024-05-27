@@ -18,10 +18,10 @@ public class GameManager : MonoBehaviour {
     public GameObject fruit9;
     public GameObject fruit10;
     public GameObject[] fruitsOrder;
-    public GameObject[] fruitsDroppable;
     public List<GameObject> fruitsQueue;
+    public List<(GameObject fruit, float weight)> fruitsDroppable = new List<(GameObject, float)>();
     public int[] fruitsPoints = { 0, 1, 3, 6, 10, 15, 21, 28, 36, 45, 55};
-    public int[] fruitsMurgeBonusPoints = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11};
+    public int[] fruitsMergeBonusPoints = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11};
 
     [Header("Particles")]
     public float particlesZ = -2;
@@ -37,10 +37,13 @@ public class GameManager : MonoBehaviour {
     void Start() {
         // Create fruit order list
         fruitsOrder = new GameObject[] { fruit0, fruit1, fruit2, fruit3, fruit4, fruit5, fruit6, fruit7, fruit8, fruit9, fruit10 };
-        // Create droppable druits list
-        fruitsDroppable = new GameObject[] { fruit0, fruit1, fruit2, fruit3 };
         // Create starting fruit queue
         fruitsQueue = new List<GameObject> { fruit0, fruit0 };
+        // Initialize the droppable fruits with their weights
+        fruitsDroppable.Add((fruit0, 0.25f));
+        fruitsDroppable.Add((fruit1, 0.30f));
+        fruitsDroppable.Add((fruit2, 0.30f));
+        fruitsDroppable.Add((fruit3, 0.15f));
     }
 
     // Update is called once per frame
@@ -81,12 +84,12 @@ public class GameManager : MonoBehaviour {
         Destroy(selfFruit);
         Destroy(otherFruit);
 
-        // Murge two fruits
-        MurgeFruits(selfFruit, otherFruit, fruitID);
+        // Merge two fruits
+        MergeFruits(selfFruit, otherFruit, fruitID);
     }
 
     // Function that summon a new fruit by murging two of them
-    void MurgeFruits(GameObject selfFruit, GameObject otherFruit, int fruitID) {
+    void MergeFruits(GameObject selfFruit, GameObject otherFruit, int fruitID) {
         fruitID += 1;
 
         // Check if fruitID is within valid range
@@ -98,9 +101,9 @@ public class GameManager : MonoBehaviour {
         // Calculate midpoint position between selfFruit and otherFruit
         Vector2 midpoint = (selfFruit.transform.position + otherFruit.transform.position) / 2f;
 
-        // Spawn the murgedFruit at the midpoint position
-        GameObject murgedFruit = Instantiate(nextFruitPrefab, midpoint, Quaternion.identity);
-        murgedFruit.transform.SetParent(fruitsContainer.transform); 
+        // Spawn the mergedFruit at the midpoint position
+        GameObject mergedFruit = Instantiate(nextFruitPrefab, midpoint, Quaternion.identity);
+        mergedFruit.transform.SetParent(fruitsContainer.transform); 
     }
 
     // Coroutine that summons and gets rid of particleFruitCollision
@@ -111,16 +114,29 @@ public class GameManager : MonoBehaviour {
         Destroy(particleInstance.gameObject); // Destroy the particle system
     }
 
-    // Function that adds a random fruit to the queue
+    // Function that adds a random fruit to the queue with weighted probabilities
     public void AddRandomFruitToQueue() {
-        int randomIndex = Random.Range(0, fruitsDroppable.Length);
-        GameObject randomFruit = fruitsDroppable[randomIndex];
-        fruitsQueue.Add(randomFruit);
+        // Calculate totalWeight
+        float totalWeight = 0f;
+        foreach (var fruit in fruitsDroppable) totalWeight += fruit.weight;
+
+        // Generate a random number between 0 and totalWeight
+        float randomValue = Random.Range(0f, totalWeight);
+
+        // Determine which fruit to select based on the random value
+        float cumulativeWeight = 0f;
+        for (int i = 0; i < fruitsDroppable.Count; i++) {
+            cumulativeWeight += fruitsDroppable[i].weight;
+            if (randomValue <= cumulativeWeight) {
+                fruitsQueue.Add(fruitsDroppable[i].fruit);
+                break;
+            }
+        }
     }
 
     // Function that calculate the point gained from fruits
-    private void CalculatePoint(int fruitID, bool murge=false) {
-        if (murge) {score += fruitsMurgeBonusPoints[fruitID];}
+    private void CalculatePoint(int fruitID, bool merge=false) {
+        if (merge) {score += fruitsMergeBonusPoints[fruitID];}
         score += fruitsPoints[fruitID];
     }
 }
