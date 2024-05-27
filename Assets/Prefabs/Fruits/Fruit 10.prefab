@@ -161,5 +161,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ddc021d81c7019e4db63f9d51b75a073, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fruitID: 9
+  fruitID: 10
   collidedWithSameFruit: 0

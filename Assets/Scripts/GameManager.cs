@@ -20,8 +20,8 @@ public class GameManager : MonoBehaviour {
     public GameObject[] fruitsOrder;
     public List<GameObject> fruitsQueue;
     public List<(GameObject fruit, float weight)> fruitsDroppable = new List<(GameObject, float)>();
-    public int[] fruitsPoints = { 0, 1, 3, 6, 10, 15, 21, 28, 36, 45, 55};
-    public int[] fruitsMergeBonusPoints = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11};
+    public int[] fruitsPoints = { 0, 1, 3, 6, 10, 15, 21, 28, 36, 45, 55, 66};
+    public int[] fruitsMergeBonusPoints = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12};
 
     [Header("Particles")]
     public float particlesZ = -2;
@@ -49,8 +49,7 @@ public class GameManager : MonoBehaviour {
 
     // Update is called once per frame
     void Update() {
-        // DEBUG KEY
-        if (Input.GetKeyDown(KeyCode.Tab)) StartCoroutine(ClearBoard());
+
     }
 
 
@@ -92,20 +91,30 @@ public class GameManager : MonoBehaviour {
 
     // Function that summon a new fruit by murging two of them
     void MergeFruits(GameObject selfFruit, GameObject otherFruit, int fruitID) {
-        fruitID += 1;
+        // Get next fruit if fruitID <= 9
+        if (fruitID <= 9) {
+            // Get next fruit ID
+            int nextFruitID = fruitID+1;
 
-        // Check if fruitID is within valid range
-        if (!(fruitID >= 0 && fruitID < fruitsOrder.Length)) return;
+            // Check if fruitID is within valid range
+            if (!(nextFruitID >= 0 && nextFruitID < fruitsOrder.Length)) return;
 
-        // Get the next fruit prefab from the array
-        GameObject nextFruitPrefab = fruitsOrder[fruitID];
+            // Get the next fruit prefab from the array
+            GameObject nextFruitPrefab = fruitsOrder[nextFruitID];
+            
+            // Calculate midpoint position between selfFruit and otherFruit
+            Vector2 midpoint = (selfFruit.transform.position + otherFruit.transform.position) / 2f;
+
+            // Spawn the mergedFruit at the midpoint position
+            GameObject mergedFruit = Instantiate(nextFruitPrefab, midpoint, Quaternion.identity);
+            mergedFruit.transform.SetParent(fruitsContainer.transform); 
+        }
         
-        // Calculate midpoint position between selfFruit and otherFruit
-        Vector2 midpoint = (selfFruit.transform.position + otherFruit.transform.position) / 2f;
-
-        // Spawn the mergedFruit at the midpoint position
-        GameObject mergedFruit = Instantiate(nextFruitPrefab, midpoint, Quaternion.identity);
-        mergedFruit.transform.SetParent(fruitsContainer.transform); 
+        // Clear board if fruitID = 10 (water melon)
+        else if (fruitID == 10) {
+            // Clear board
+            StartCoroutine(ClearBoard());
+        }
     }
 
     // Coroutine that summons and gets rid of particleFruitCollision
@@ -136,21 +145,29 @@ public class GameManager : MonoBehaviour {
         }
     }
 
-    // Function that calculate the point gained from fruits
-    void CalculatePoint(int fruitID, bool merge=false) {
-        if (merge) {score += fruitsMergeBonusPoints[fruitID];}
+    // Function that calculates the points gained from fruits
+    void CalculatePoint(int fruitID, bool merge = false) {
+        // Validate fruitID
+        if (fruitID < 0 || fruitID >= fruitsPoints.Length) {
+            Debug.LogError($"Invalid fruitID: {fruitID}. It should be within the range 0 to {fruitsPoints.Length - 1}.");
+            return;
+        }
+        
+        // Add points
+        if (merge && fruitID < fruitsMergeBonusPoints.Length) {
+            score += fruitsMergeBonusPoints[fruitID];
+        }
         score += fruitsPoints[fruitID];
     }
 
     // Coroutine to destroy all fruits
     IEnumerator ClearBoard(float destroyDelay = 0.05f) {
         Transform containerTransform = fruitsContainer.transform;
-        int childCount = containerTransform.childCount;
-        
+
         // Iterate through each child object backwards
-        for (int i = childCount - 1; i >= 0; i--) {
-            // Get the child object at index i
-            GameObject fruitObject = containerTransform.GetChild(i).gameObject;
+        while (containerTransform.childCount > 0) {
+            // Get the child object at the last index
+            GameObject fruitObject = containerTransform.GetChild(containerTransform.childCount - 1).gameObject;
             
             // Get the fruit ID from the FruitScript attached to the fruitObject
             Fruit fruitScript = fruitObject.GetComponent<Fruit>();
@@ -166,9 +183,6 @@ public class GameManager : MonoBehaviour {
             // Calculate point from fruit and destroy it
             CalculatePoint(fruitID);
             Destroy(fruitObject);
-
-            
-            
         }
     }
 
