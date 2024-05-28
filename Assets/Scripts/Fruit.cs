@@ -4,7 +4,7 @@ public class Fruit : MonoBehaviour {
     /* -------------------------------- Variables ------------------------------- */
     public int fruitID;
     public bool collidedWithSameFruit = false;
-
+    
     private GameManager gameManager;
 
 
@@ -15,6 +15,7 @@ public class Fruit : MonoBehaviour {
         gameManager = FindObjectOfType<GameManager>();
     }
 
+    // Trigers when object collides with an otherone and stay
     void OnCollisionStay2D(Collision2D collision) {
         Fruit otherFruit = collision.gameObject.GetComponent<Fruit>();
         

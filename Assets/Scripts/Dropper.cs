@@ -6,8 +6,8 @@ public class Dropper : MonoBehaviour {
     [Header("Dropper")]
     public GameObject dropperBody;
     public GameObject dropperLine;
-    public float maxLeftX = -2.5f;
-    public float maxRightX = 2.5f;
+    public float maxLeftX = -3f;
+    public float maxRightX = 3f;
     public float moveSpeed = 5f; // Speed at which the dropper moves
     public float fruitZ = -1f;
     
@@ -117,7 +117,7 @@ public class Dropper : MonoBehaviour {
         // Drop fruit (Change parrent and enable simulated on rb2d)
         dropFruit.transform.SetParent(fruitsContainer.transform);
         dropFruit.GetComponent<Rigidbody2D>().simulated = true;
-        
+
         // Switch ready to drop to false
         gameManager.readyToDrop = false;
 

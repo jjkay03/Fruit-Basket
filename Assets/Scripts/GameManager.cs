@@ -7,22 +7,15 @@ public class GameManager : MonoBehaviour {
     /* -------------------------------- Variables ------------------------------- */
     [Header("Fruits")]
     public GameObject fruitsContainer;
-    public GameObject fruit0;
-    public GameObject fruit1;
-    public GameObject fruit2;
-    public GameObject fruit3;
-    public GameObject fruit4;
-    public GameObject fruit5;
-    public GameObject fruit6;
-    public GameObject fruit7;
-    public GameObject fruit8;
-    public GameObject fruit9;
-    public GameObject fruit10;
+    public GameObject fruit0, fruit1, fruit2, fruit3, fruit4, fruit5, fruit6, fruit7, fruit8, fruit9, fruit10;
     public GameObject[] fruitsOrder;
     public List<GameObject> fruitsQueue;
     public List<(GameObject fruit, float weight)> fruitsDroppable = new List<(GameObject, float)>();
     public int[] fruitsPoints = { 0, 1, 3, 6, 10, 15, 21, 28, 36, 45, 55, 66};
     public int[] fruitsMergeBonusPoints = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12};
+
+    [Header("Level")]
+    public GameObject loseArea;
 
     [Header("Particles")]
     public float particlesZ = -2;
@@ -42,6 +35,7 @@ public class GameManager : MonoBehaviour {
 
     [Header("Others")]
     public bool readyToDrop = true;
+    public bool gameLost = false;
     public float fruitDestryScaleIncrement = 0.05f;
 
 
@@ -63,6 +57,11 @@ public class GameManager : MonoBehaviour {
     void Update() {
         // Update score on screen
         textScore.text = score.ToString();
+
+        // Check for loss confition
+        if (CheckForLossCondition()) {
+            
+        }
     }
 
 
@@ -223,6 +222,23 @@ public class GameManager : MonoBehaviour {
 
         // Destroy object
         Destroy(localAudioSource, localAudioSourceComponent.clip.length);
+    }
+
+    // Function that returns true if the loss condition is met
+    bool CheckForLossCondition() {
+        GameObject[] fruits = GameObject.FindGameObjectsWithTag("Fruit"); // Get all tag "Fruit"
+
+        // Iterate through each fruit
+        foreach (GameObject fruit in fruits) {
+            // Get the Rigidbody2D component of the fruit
+            Rigidbody2D fruitRigidbody = fruit.GetComponent<Rigidbody2D>();
+
+            
+            return true; // Return true if the fruit is within the lose area
+        }
+
+        // Return false if no fruit is within the lose area
+        return false;
     }
 
 }
