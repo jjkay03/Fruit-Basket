@@ -117,7 +117,7 @@ public class Dropper : MonoBehaviour {
         // Drop fruit (Change parrent and enable simulated on rb2d)
         dropFruit.transform.SetParent(fruitsContainer.transform);
         dropFruit.GetComponent<Rigidbody2D>().simulated = true;
-
+        
         // Switch ready to drop to false
         gameManager.readyToDrop = false;
 
