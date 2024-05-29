@@ -15,8 +15,14 @@ public class Fruit : MonoBehaviour {
         gameManager = FindObjectOfType<GameManager>();
     }
 
-    // Trigers when object collides with an otherone and stay
-    void OnCollisionStay2D(Collision2D collision) {
+    // Deal with Fruits colliding, both are needed because OnCollisionStay2D doesn't trigger when fruits collide really fast
+    void OnCollisionEnter2D(Collision2D collision) { FruitCollision(collision); } // Trigers when collides
+    void OnCollisionStay2D(Collision2D collision) { FruitCollision(collision); } // Trigers whenn collides and stay
+
+
+    /* -------------------------------- Functions ------------------------------- */
+    // Function that deals with fruit colliding with an other fruit
+    void FruitCollision(Collision2D collision) {
         Fruit otherFruit = collision.gameObject.GetComponent<Fruit>();
         
         // Check ending scenarios
