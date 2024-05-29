@@ -486,6 +486,7 @@ GameObject:
   - component: {fileID: 530350416}
   - component: {fileID: 530350417}
   - component: {fileID: 530350418}
+  - component: {fileID: 530350419}
   m_Layer: 0
   m_Name: Lose Area
   m_TagString: Untagged
@@ -605,6 +606,19 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &530350419
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 530350415}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7beac66806e3c7f4f8348403b8859e7f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  loseTime: 2
 --- !u!1 &710932453
 GameObject:
   m_ObjectHideFlags: 0
@@ -1474,7 +1488,6 @@ MonoBehaviour:
   fruitsQueue: []
   fruitsPoints: 000000000100000003000000060000000a0000000f000000150000001c000000240000002d0000003700000042000000
   fruitsMergeBonusPoints: 0100000002000000030000000400000005000000060000000700000008000000090000000a0000000b0000000c000000
-  loseArea: {fileID: 530350415}
   particlesZ: -2
   particlesContainer: {fileID: 2060417712}
   particleFruitCollision: {fileID: 6987507487515563280, guid: cd7341f34cba4094b8a2bb7e8db48ac1, type: 3}

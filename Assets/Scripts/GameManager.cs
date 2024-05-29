@@ -14,9 +14,6 @@ public class GameManager : MonoBehaviour {
     public int[] fruitsPoints = { 0, 1, 3, 6, 10, 15, 21, 28, 36, 45, 55, 66};
     public int[] fruitsMergeBonusPoints = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12};
 
-    [Header("Level")]
-    public GameObject loseArea;
-
     [Header("Particles")]
     public float particlesZ = -2;
     public GameObject particlesContainer;
