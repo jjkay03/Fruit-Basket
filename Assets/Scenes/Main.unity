@@ -618,7 +618,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7beac66806e3c7f4f8348403b8859e7f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  loseTime: 2
+  loseTime: 3
 --- !u!1 &710932453
 GameObject:
   m_ObjectHideFlags: 0

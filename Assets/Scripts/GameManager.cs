@@ -35,6 +35,9 @@ public class GameManager : MonoBehaviour {
     public bool gameLost = false;
     public float fruitDestryScaleIncrement = 0.05f;
 
+    // Private
+    private bool hasGameLostBeenCalled = false;
+
 
     /* ------------------------------- Unity Func ------------------------------- */
     // Start is called before the first frame update
@@ -55,10 +58,8 @@ public class GameManager : MonoBehaviour {
         // Update score on screen
         textScore.text = score.ToString();
 
-        // Check for loss confition
-        if (CheckForLossCondition()) {
-            
-        }
+        // End the game gameLost switch to true
+        if (gameLost && !hasGameLostBeenCalled) GameLost();
     }
 
 
@@ -221,21 +222,10 @@ public class GameManager : MonoBehaviour {
         Destroy(localAudioSource, localAudioSourceComponent.clip.length);
     }
 
-    // Function that returns true if the loss condition is met
-    bool CheckForLossCondition() {
-        GameObject[] fruits = GameObject.FindGameObjectsWithTag("Fruit"); // Get all tag "Fruit"
-
-        // Iterate through each fruit
-        foreach (GameObject fruit in fruits) {
-            // Get the Rigidbody2D component of the fruit
-            Rigidbody2D fruitRigidbody = fruit.GetComponent<Rigidbody2D>();
-
-            
-            return true; // Return true if the fruit is within the lose area
-        }
-
-        // Return false if no fruit is within the lose area
-        return false;
+    // Function that ends the game when its lost
+    void GameLost() {
+        hasGameLostBeenCalled = true;
+        readyToDrop = false;
+        StartCoroutine(ClearBoard()); // Clear the board
     }
-
 }
