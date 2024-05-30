@@ -64,6 +64,15 @@ public class GameManager : MonoBehaviour {
 
 
     /* -------------------------------- Functions ------------------------------- */
+    // Coroutine that summons and gets rid of particles
+    public IEnumerator SpawnParticle(ParticleSystem particleSystem, Vector2 position) {
+        Vector3 spawnPosition = new Vector3(position.x, position.y, particlesZ);
+        ParticleSystem particleInstance = Instantiate(particleSystem, spawnPosition, Quaternion.identity);
+        particleInstance.transform.SetParent(particlesContainer.transform); // Set particlesContainer as parent
+        yield return new WaitForSeconds(particleInstance.main.duration); // Wait for the duration of the particle system        
+        Destroy(particleInstance.gameObject); // Destroy the particle system
+    }
+    
     // Function handles two similar fruits colliding
     public void SameFruitCollided(GameObject selfFruit, GameObject otherFruit, int fruitID) {
         // Play animation
@@ -83,7 +92,7 @@ public class GameManager : MonoBehaviour {
 
         // Spwan particles
         Vector2 midpoint = (selfFruit.transform.position + otherFruit.transform.position) / 2f; // Position between fruits
-        StartCoroutine(SpawnParticleFruitCollision(midpoint));
+        StartCoroutine(SpawnParticle(particleFruitCollision, midpoint));
 
         // Play SFX
         PlaySFX(SFX_fruitMurge, true, 0.8f, 1.2f);
@@ -128,15 +137,6 @@ public class GameManager : MonoBehaviour {
             // Clear board
             StartCoroutine(ClearBoard());
         }
-    }
-
-    // Coroutine that summons and gets rid of particleFruitCollision
-    private IEnumerator SpawnParticleFruitCollision(Vector2 position) {
-        Vector3 spawnPosition = new Vector3(position.x, position.y, particlesZ);
-        ParticleSystem particleInstance = Instantiate(particleFruitCollision, spawnPosition, Quaternion.identity);
-        particleInstance.transform.SetParent(particlesContainer.transform); // Set particlesContainer as parent
-        yield return new WaitForSeconds(particleInstance.main.duration); // Wait for the duration of the particle system        
-        Destroy(particleInstance.gameObject); // Destroy the particle system
     }
 
     // Function that adds a random fruit to the queue with weighted probabilities
@@ -189,7 +189,7 @@ public class GameManager : MonoBehaviour {
 
             // Animation
             fruitObject.transform.localScale = fruitObject.transform.localScale + new Vector3(fruitDestryScaleIncrement, fruitDestryScaleIncrement, fruitDestryScaleIncrement);
-            StartCoroutine(SpawnParticleFruitCollision(fruitObject.transform.position));
+            StartCoroutine(SpawnParticle(particleFruitCollision, fruitObject.transform.position));
 
             // Play SFX
             PlaySFX(SFX_fruitMurge, true, 0.8f, 1.2f);

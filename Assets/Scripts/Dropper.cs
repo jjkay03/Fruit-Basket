@@ -1,4 +1,3 @@
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class Dropper : MonoBehaviour {
@@ -14,7 +13,10 @@ public class Dropper : MonoBehaviour {
     [Header("Dropped Fruit")]
     public GameObject fruitsContainer;
     public GameObject dropFruit;
-    public bool dropFruitCollided = false;
+    public bool dropFruitCollided = true;
+
+    [Header("Particles")]
+    public ParticleSystem particleFallingFruit;
 
     [Header("Keybinds")]
     public KeyCode[] leftKey = { KeyCode.LeftArrow,  KeyCode.A };

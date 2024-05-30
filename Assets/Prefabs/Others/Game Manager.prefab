@@ -1,0 +1,75 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1986570651872309510
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3914241295829982098}
+  - component: {fileID: 5017032962063406550}
+  m_Layer: 0
+  m_Name: Game Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3914241295829982098
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1986570651872309510}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5017032962063406550
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1986570651872309510}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ff3d1947ec23ef49ab4ae5ea94a9541, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fruitsContainer: {fileID: 0}
+  fruit0: {fileID: 1511589013800936977, guid: 28b672a34eba50d4d9d160e4a579a166, type: 3}
+  fruit1: {fileID: 519106105941283179, guid: d47e4f2dd44f1a54d8ff5cb1e39334d4, type: 3}
+  fruit2: {fileID: 519106105941283179, guid: af0cced296339ac429925e7f6bdd3bbb, type: 3}
+  fruit3: {fileID: 519106105941283179, guid: a5ba798c1a3260943813b44695bc3bde, type: 3}
+  fruit4: {fileID: 519106105941283179, guid: 2728547b4b1199c42a97100d635f1c71, type: 3}
+  fruit5: {fileID: 519106105941283179, guid: fdd01ab222d1e4a49b8e4f27ee022d1d, type: 3}
+  fruit6: {fileID: 519106105941283179, guid: 53946d0f7431d1c47a51ad7823f9b8e0, type: 3}
+  fruit7: {fileID: 519106105941283179, guid: a8342511057a06f4f93dc784faa0d231, type: 3}
+  fruit8: {fileID: 519106105941283179, guid: ad29a8bc66be0754592265cd23fa37e4, type: 3}
+  fruit9: {fileID: 519106105941283179, guid: 01a09b3db7b8bf84b8ee41de92479515, type: 3}
+  fruit10: {fileID: 519106105941283179, guid: 05bf08e9cda57004089b7f1cc1ea5cea, type: 3}
+  fruitsOrder: []
+  fruitsQueue: []
+  fruitsPoints: 000000000100000003000000060000000a0000000f000000150000001c000000240000002d0000003700000042000000
+  fruitsMergeBonusPoints: 0100000002000000030000000400000005000000060000000700000008000000090000000a0000000b0000000c000000
+  particlesZ: -2
+  particlesContainer: {fileID: 0}
+  particleFruitCollision: {fileID: 6987507487515563280, guid: cd7341f34cba4094b8a2bb7e8db48ac1, type: 3}
+  volumeSFX: 1
+  audioContainer: {fileID: 0}
+  audioSource: {fileID: 5573833906978923272, guid: 614150f8d81b3d947abb549d11c3f48b, type: 3}
+  SFX_fruitMurge: {fileID: 8300000, guid: 5656866ad029c664b8f39eedcc59ad14, type: 3}
+  SFX_fruit10Murge: {fileID: 8300000, guid: 55c93d26f3c6c2740b6704d427fc1887, type: 3}
+  score: 0
+  textScore: {fileID: 0}
+  readyToDrop: 1
+  gameLost: 0
+  fruitDestryScaleIncrement: 0.05
