@@ -33,7 +33,7 @@ public class Dropper : MonoBehaviour {
         gameManager = FindObjectOfType<GameManager>();
         
         // Place first drop fruit (0.5s after game start, for queue to generate)
-        Invoke("PlaceDropFruit", 0.5f);
+        Invoke("PlaceDropFruit", 0.2f);
     }
 
     // Update is called once per frame
