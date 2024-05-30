@@ -8,6 +8,7 @@ public class LoseArea : MonoBehaviour {
     private Dictionary<GameObject, float> losingFruits;
     private GameManager gameManager;
 
+    
     /* ------------------------------- Unity Func ------------------------------- */
     // Start is called before the first frame update
     void Start() {
