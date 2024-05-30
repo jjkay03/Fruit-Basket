@@ -504,6 +504,7 @@ GameObject:
   - component: {fileID: 206313302}
   - component: {fileID: 206313304}
   - component: {fileID: 206313303}
+  - component: {fileID: 206313305}
   m_Layer: 0
   m_Name: Warning Area
   m_TagString: Untagged
@@ -623,6 +624,20 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &206313305
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 206313301}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e7ea187f4c53df34399686d65acf1ed1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  loseLine: {fileID: 116792129}
+  warningTime: 1
 --- !u!1 &273822309
 GameObject:
   m_ObjectHideFlags: 0
@@ -867,6 +882,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   loseTime: 3
+  blinkTime: 0.8
+  blinkStartColor: {r: 1, g: 1, b: 1, a: 1}
+  blinkEndColor: {r: 1, g: 1, b: 1, a: 0}
+  blinkSpeed: 5
 --- !u!1 &710932453
 GameObject:
   m_ObjectHideFlags: 0

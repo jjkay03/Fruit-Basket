@@ -3,13 +3,13 @@ using UnityEngine;
 
 public class LoseArea : MonoBehaviour {
     /* -------------------------------- Variables ------------------------------- */
-    public float loseTime = 4f;
-    public float blinkTime = 0.3f;
+    public float loseTime = 3f;
+    public float blinkTime = 0.8f;
     
     [Header("Blinking settings")]
-    public Color blinkStartColor = Color.white;
-    public Color blinkEndColor = new Color(1f, 1f, 1f, 0.3f);
-    public float blinkSpeed = 8f;
+    public Color blinkStartColor = Color.white; // Full alpha color
+    public Color blinkEndColor = new Color(1f, 1f, 1f, 0f); // 0 alpha color
+    public float blinkSpeed = 5f;
 
     // Private
     private Dictionary<GameObject, float> losingFruits;
@@ -63,6 +63,7 @@ public class LoseArea : MonoBehaviour {
         gameObject.GetComponent<SpriteRenderer>().color = Color.Lerp(blinkStartColor, blinkEndColor, Mathf.PingPong(Time.time*blinkSpeed, 1));
     }
 
+    // Function that reverts fruit to original color to stop blinking
     void StopFruitBlink(GameObject gameObject) {
         gameObject.GetComponent<SpriteRenderer>().color = Color.Lerp(gameObject.GetComponent<SpriteRenderer>().color, blinkStartColor, 1f);
     }   
