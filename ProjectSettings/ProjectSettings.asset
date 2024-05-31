@@ -107,7 +107,7 @@ PlayerSettings:
   xboxEnableFitness: 0
   visibleInBackground: 1
   allowFullscreenSwitch: 1
-  fullscreenMode: 3
+  fullscreenMode: 1
   xboxSpeechDB: 0
   xboxEnableHeadOrientation: 0
   xboxEnableGuest: 0
@@ -143,7 +143,7 @@ PlayerSettings:
   loadStoreDebugModeEnabled: 0
   visionOSBundleVersion: 1.0
   tvOSBundleVersion: 1.0
-  bundleVersion: ALPHA-V0.4
+  bundleVersion: ALPHA-V0.5
   preloadedAssets: []
   metroInputSource: 0
   wsaTransparentSwapchain: 0
