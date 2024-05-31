@@ -67,8 +67,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: NEXT
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 197fba8c8cd9b2e40a45fad37302fe7f, type: 2}
+  m_sharedMaterial: {fileID: -3240866230466480516, guid: 197fba8c8cd9b2e40a45fad37302fe7f, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -144,7 +144,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1249421534154200074}
   m_Layer: 0
-  m_Name: Next Fruit
+  m_Name: Next Fruit Display
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -159,7 +159,7 @@ Transform:
   m_GameObject: {fileID: 3802082268442253737}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 7.136, y: 1.49, z: 1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -238,7 +238,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: d603b2f32329b754194f314e0ed796d4, type: 3}
+  m_Sprite: {fileID: 21300000, guid: b4658b613b6678d47ba243df5aeaa77d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 0.60784316}
   m_FlipX: 0
   m_FlipY: 0
