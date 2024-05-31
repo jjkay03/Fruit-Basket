@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour {
     public List<(GameObject fruit, float weight)> fruitsDroppable = new List<(GameObject, float)>();
     public int[] fruitsPoints = { 0, 1, 3, 6, 10, 15, 21, 28, 36, 45, 55, 66};
     public int[] fruitsMergeBonusPoints = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12};
+    public float fruitsZ = -1;
 
     [Header("Particles")]
     public float particlesZ = -2;
@@ -29,6 +30,10 @@ public class GameManager : MonoBehaviour {
     [Header("Score")]
     public int score = 0;
     public TextMeshProUGUI textScore;
+
+    [Header("Next Fruit")]
+    public GameObject nextFruit;
+    public GameObject nextFruitDisplay;
 
     [Header("Others")]
     public bool readyToDrop = true;
@@ -51,6 +56,9 @@ public class GameManager : MonoBehaviour {
         fruitsDroppable.Add((fruit1, 0.30f));
         fruitsDroppable.Add((fruit2, 0.30f));
         fruitsDroppable.Add((fruit3, 0.15f));
+
+        // Place first next fruit
+        Invoke("UpdateNextFruitDisplay", 0.1f);
     }
 
     // Update is called once per frame
@@ -60,6 +68,9 @@ public class GameManager : MonoBehaviour {
 
         // End the game gameLost switch to true
         if (gameLost && !hasGameLostBeenCalled) GameLost();
+
+        // Update next fruit if it changes
+        //if (nextFruit != fruitsQueue[1]) UpdateNextFruitDisplay();
     }
 
 
@@ -125,7 +136,7 @@ public class GameManager : MonoBehaviour {
             Vector2 midpoint = (selfFruit.transform.position + otherFruit.transform.position) / 2f;
 
             // Spawn the mergedFruit at the midpoint position
-            GameObject mergedFruit = Instantiate(nextFruitPrefab, midpoint, Quaternion.identity);
+            GameObject mergedFruit = Instantiate(nextFruitPrefab, new Vector3(midpoint.x, midpoint.y, fruitsZ), Quaternion.identity);
             mergedFruit.transform.SetParent(fruitsContainer.transform); 
         }
         
@@ -157,6 +168,22 @@ public class GameManager : MonoBehaviour {
                 break;
             }
         }
+    }
+
+    // Function that displays next fruit
+    public void UpdateNextFruitDisplay() {
+        // Save 2nd fruit in queue in nextFruit var
+        nextFruit = fruitsQueue[1];
+
+        // Remove any child of nextFruitDisplay
+        for (int i = nextFruitDisplay.transform.childCount - 1; i >= 0; i--) {
+            GameObject.Destroy(nextFruitDisplay.transform.GetChild(i).gameObject);
+        }
+
+        // Instantiate next fruit as a child of nextFruitDisplay
+        GameObject nextFruitObject = Instantiate(nextFruit, nextFruitDisplay.transform.position, Quaternion.identity);
+        nextFruitObject.transform.SetParent(nextFruitDisplay.transform);
+        nextFruitObject.GetComponent<Rigidbody2D>().simulated = false; // Turn off simulation on rb2d
     }
 
     // Function that calculates the points gained from fruits
