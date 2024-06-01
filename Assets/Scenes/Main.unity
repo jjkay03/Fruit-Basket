@@ -1619,7 +1619,7 @@ PrefabInstance:
       objectReference: {fileID: 21300000, guid: fe3cbc5464d5dd64abfd7bdd0e1028ee, type: 3}
     - target: {fileID: 5912526025358954999, guid: 23637da9cfba91b40923722b398a28a5, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8700221614014916056, guid: 23637da9cfba91b40923722b398a28a5, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1681,6 +1681,10 @@ PrefabInstance:
     - target: {fileID: 4697521718474843452, guid: ce1bf8606de55a94fb567ede1596c180, type: 3}
       propertyPath: m_Name
       value: Dropper
+      objectReference: {fileID: 0}
+    - target: {fileID: 8265622050430904733, guid: ce1bf8606de55a94fb567ede1596c180, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9019890792391193220, guid: ce1bf8606de55a94fb567ede1596c180, type: 3}
       propertyPath: m_LocalPosition.x

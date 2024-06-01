@@ -128,7 +128,7 @@ public class GameManager : MonoBehaviour {
         // Get next fruit if fruitID <= 9
         if (fruitID <= 9) {
             // Get next fruit ID
-            int nextFruitID = fruitID+1;
+            int nextFruitID = fruitID + 1;
 
             // Check if fruitID is within valid range
             if (!(nextFruitID >= 0 && nextFruitID < fruitsOrder.Length)) return;
@@ -139,14 +139,26 @@ public class GameManager : MonoBehaviour {
             // Calculate midpoint position between selfFruit and otherFruit
             Vector2 midpoint = (selfFruit.transform.position + otherFruit.transform.position) / 2f;
 
+            // Calculate average velocity
+            Rigidbody2D selfRb = selfFruit.GetComponent<Rigidbody2D>();
+            Rigidbody2D otherRb = otherFruit.GetComponent<Rigidbody2D>();
+            Vector2 averageVelocity = (selfRb.velocity + otherRb.velocity) / 2f;
+            float averageAngularVelocity = (selfRb.angularVelocity + otherRb.angularVelocity) / 2f;
+            
             // Spawn the mergedFruit at the midpoint position
             GameObject mergedFruit = Instantiate(nextFruitPrefab, new Vector3(midpoint.x, midpoint.y, fruitsZ), Quaternion.identity);
-            mergedFruit.transform.SetParent(fruitsContainer.transform); 
+            mergedFruit.transform.SetParent(fruitsContainer.transform);
+            
+            // Apply the average velocity and angular velocity to the mergedFruit
+            Rigidbody2D mergedRb = mergedFruit.GetComponent<Rigidbody2D>();
+            if (mergedRb != null) {
+                mergedRb.velocity = averageVelocity;
+                mergedRb.angularVelocity = averageAngularVelocity;
+            }
         }
-        
         // Clear board if fruitID = 10 (water melon)
         else if (fruitID == 10) {
-            // Play fruit10 murge sound
+            // Play fruit10 merge sound
             PlaySFX(SFX_fruit10Murge);
             
             // Clear board
