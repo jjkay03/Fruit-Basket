@@ -811,6 +811,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 478499208}
+  - component: {fileID: 478499209}
   m_Layer: 0
   m_Name: Dropping Fruits
   m_TagString: Untagged
@@ -835,6 +836,34 @@ Transform:
   - {fileID: 1888546012}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &478499209
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 478499207}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cfe1b12f8d68cff4e8d9df03719b583a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fruitsZ: 20
+  dropFruitInterval: 0.4
+  destroyFruitDelay: 3
+  fruitSpawner: {fileID: 192555066}
+  fruitsContainer: {fileID: 1888546011}
+  fruit0: {fileID: 1511589013800936977, guid: 28b672a34eba50d4d9d160e4a579a166, type: 3}
+  fruit1: {fileID: 519106105941283179, guid: d47e4f2dd44f1a54d8ff5cb1e39334d4, type: 3}
+  fruit2: {fileID: 519106105941283179, guid: af0cced296339ac429925e7f6bdd3bbb, type: 3}
+  fruit3: {fileID: 519106105941283179, guid: a5ba798c1a3260943813b44695bc3bde, type: 3}
+  fruit4: {fileID: 519106105941283179, guid: 2728547b4b1199c42a97100d635f1c71, type: 3}
+  fruit5: {fileID: 519106105941283179, guid: fdd01ab222d1e4a49b8e4f27ee022d1d, type: 3}
+  fruit6: {fileID: 519106105941283179, guid: 53946d0f7431d1c47a51ad7823f9b8e0, type: 3}
+  fruit7: {fileID: 519106105941283179, guid: a8342511057a06f4f93dc784faa0d231, type: 3}
+  fruit8: {fileID: 519106105941283179, guid: ad29a8bc66be0754592265cd23fa37e4, type: 3}
+  fruit9: {fileID: 519106105941283179, guid: 01a09b3db7b8bf84b8ee41de92479515, type: 3}
+  fruit10: {fileID: 519106105941283179, guid: 05bf08e9cda57004089b7f1cc1ea5cea, type: 3}
 --- !u!1 &510739558
 GameObject:
   m_ObjectHideFlags: 0
@@ -2885,7 +2914,6 @@ MonoBehaviour:
   inCredits: 0
   panelMenu: {fileID: 1083426977}
   panelCredits: {fileID: 1743433686}
-  linkjjkay03: https://jjkay03.com/
   linkSukaGame: https://wikipedia.org/wiki/Suika_Game
 --- !u!1 &1743433686
 GameObject:
