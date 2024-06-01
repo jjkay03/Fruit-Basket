@@ -6,6 +6,7 @@ public class MainMenu : MonoBehaviour {
     public bool inCredits = false;
     public GameObject panelMenu;
     public GameObject panelCredits;
+    public string linkSukaGame = "https://wikipedia.org/wiki/Suika_Game";
     
 
     /* ------------------------------- Button Func ------------------------------ */
@@ -34,4 +35,10 @@ public class MainMenu : MonoBehaviour {
     public void QuitGame() {
         Application.Quit(); // Close game
     }
+
+    // Button : Suika Game (in credits)
+    public void SuikaGame() {
+        Application.OpenURL(linkSukaGame);
+    }
+
 }

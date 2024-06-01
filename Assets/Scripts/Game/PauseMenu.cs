@@ -51,5 +51,6 @@ public class PauseMenu : MonoBehaviour {
     // Button : Exit (In pause menu)
     public void QuitGame() {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
+        Resume();
     }
 }
