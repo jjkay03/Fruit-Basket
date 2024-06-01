@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PauseMenu : MonoBehaviour {
     /* -------------------------------- Variables ------------------------------- */
@@ -49,6 +50,6 @@ public class PauseMenu : MonoBehaviour {
     
     // Button : Exit (In pause menu)
     public void QuitGame() {
-        Application.Quit(); // Close game
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
     }
 }
