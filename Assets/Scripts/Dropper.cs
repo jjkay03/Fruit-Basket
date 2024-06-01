@@ -56,8 +56,8 @@ public class Dropper : MonoBehaviour {
     /* -------------------------------- Functions ------------------------------- */
     // Function that deals with player imputs for dropper movement
     void PlayerImputMoveDropper() {
-        // Stop taking imput if game lost
-        if (gameManager.gameLost) return;
+        // Stop taking imput if game lost or paused
+        if (gameManager.gameLost || PauseMenu.GAME_PAUSED) return;
         
         // Get droper position
         Vector3 position = transform.position;
@@ -87,8 +87,8 @@ public class Dropper : MonoBehaviour {
 
     // Function that handles player imput for dropping
     void PlayerImputDrop() {
-        // Stop taking imput if game lost
-        if (gameManager.gameLost) return;
+        // Stop taking imput if game lost or paused
+        if (gameManager.gameLost || PauseMenu.GAME_PAUSED) return;
 
         // Check for drop key presses
         foreach (KeyCode key in dropKey) {

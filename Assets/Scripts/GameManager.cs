@@ -1,7 +1,9 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+
 
 public class GameManager : MonoBehaviour {
     /* -------------------------------- Variables ------------------------------- */
@@ -38,7 +40,8 @@ public class GameManager : MonoBehaviour {
     [Header("Others")]
     public bool readyToDrop = true;
     public bool gameLost = false;
-    public float fruitDestryScaleIncrement = 0.05f;
+    public bool murgedFruitKeepMovement = true;
+    public float fruitDestroyScaleIncrement = 0.05f;
     public TextMeshProUGUI textGameVersion;
 
     // Private
@@ -99,11 +102,11 @@ public class GameManager : MonoBehaviour {
 
     // Coroutine to animate the fruits on collision
     IEnumerator SameFruitCollidedAnimation(GameObject selfFruit, GameObject otherFruit, int fruitID) {
-        float fruitDestryScaleIncrement = 0.05f;
+        float fruitDestroyScaleIncrement = 0.05f;
 
         // Change fruit scale
-        selfFruit.transform.localScale = selfFruit.transform.localScale + new Vector3(fruitDestryScaleIncrement, fruitDestryScaleIncrement, fruitDestryScaleIncrement);
-        otherFruit.transform.localScale = otherFruit.transform.localScale + new Vector3(fruitDestryScaleIncrement, fruitDestryScaleIncrement, fruitDestryScaleIncrement);
+        selfFruit.transform.localScale = selfFruit.transform.localScale + new Vector3(fruitDestroyScaleIncrement, fruitDestroyScaleIncrement, fruitDestroyScaleIncrement);
+        otherFruit.transform.localScale = otherFruit.transform.localScale + new Vector3(fruitDestroyScaleIncrement, fruitDestroyScaleIncrement, fruitDestroyScaleIncrement);
 
         // Spwan particles
         Vector2 midpoint = (selfFruit.transform.position + otherFruit.transform.position) / 2f; // Position between fruits
@@ -143,17 +146,19 @@ public class GameManager : MonoBehaviour {
             Rigidbody2D selfRb = selfFruit.GetComponent<Rigidbody2D>();
             Rigidbody2D otherRb = otherFruit.GetComponent<Rigidbody2D>();
             Vector2 averageVelocity = (selfRb.velocity + otherRb.velocity) / 2f;
-            float averageAngularVelocity = (selfRb.angularVelocity + otherRb.angularVelocity) / 2f;
+            float averageAngularVelocity = (selfRb.angularVelocity + otherRb.angularVelocity) / 2f;    
             
             // Spawn the mergedFruit at the midpoint position
             GameObject mergedFruit = Instantiate(nextFruitPrefab, new Vector3(midpoint.x, midpoint.y, fruitsZ), Quaternion.identity);
             mergedFruit.transform.SetParent(fruitsContainer.transform);
             
-            // Apply the average velocity and angular velocity to the mergedFruit
-            Rigidbody2D mergedRb = mergedFruit.GetComponent<Rigidbody2D>();
-            if (mergedRb != null) {
-                mergedRb.velocity = averageVelocity;
-                mergedRb.angularVelocity = averageAngularVelocity;
+            // Apply the average velocity and angular velocity
+            if (murgedFruitKeepMovement) {
+                Rigidbody2D mergedRb = mergedFruit.GetComponent<Rigidbody2D>();
+                if (mergedRb != null) {
+                    mergedRb.velocity = averageVelocity;
+                    mergedRb.angularVelocity = averageAngularVelocity;
+                }
             }
         }
         // Clear board if fruitID = 10 (water melon)
@@ -231,7 +236,7 @@ public class GameManager : MonoBehaviour {
             int fruitID = fruitScript.fruitID;
 
             // Animation
-            fruitObject.transform.localScale = fruitObject.transform.localScale + new Vector3(fruitDestryScaleIncrement, fruitDestryScaleIncrement, fruitDestryScaleIncrement);
+            fruitObject.transform.localScale = fruitObject.transform.localScale + new Vector3(fruitDestroyScaleIncrement, fruitDestroyScaleIncrement, fruitDestroyScaleIncrement);
             StartCoroutine(SpawnParticle(particleFruitCollision, fruitObject.transform.position));
 
             // Play SFX
@@ -270,5 +275,13 @@ public class GameManager : MonoBehaviour {
         hasGameLostBeenCalled = true;
         readyToDrop = false;
         StartCoroutine(ClearBoard()); // Clear the board
+    }
+
+    // Function to restrat the game
+    public void Restart() {
+        Debug.Log("RESTART GAME");
+
+        // Reload scene
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }

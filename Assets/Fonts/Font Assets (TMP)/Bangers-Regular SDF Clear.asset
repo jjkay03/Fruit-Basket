@@ -166,7 +166,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 71c1514a6bd24e1e882cebbe1904ce04, type: 3}
-  m_Name: Bangers-Regular SDF Game Version
+  m_Name: Bangers-Regular SDF Clear
   m_EditorClassIdentifier: 
   hashCode: 1499155100
   material: {fileID: -3240866230466480516}

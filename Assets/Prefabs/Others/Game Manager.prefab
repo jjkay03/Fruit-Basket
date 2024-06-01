@@ -75,5 +75,6 @@ MonoBehaviour:
   nextFruitDisplay: {fileID: 0}
   readyToDrop: 1
   gameLost: 0
-  fruitDestryScaleIncrement: 0.05
+  murgedFruitKeepMovement: 1
+  fruitDestroyScaleIncrement: 0.05
   textGameVersion: {fileID: 0}
