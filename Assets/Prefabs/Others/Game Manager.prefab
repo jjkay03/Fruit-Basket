@@ -60,6 +60,7 @@ MonoBehaviour:
   fruitsQueue: []
   fruitsPoints: 000000000100000003000000060000000a0000000f000000150000001c000000240000002d0000003700000042000000
   fruitsMergeBonusPoints: 0100000002000000030000000400000005000000060000000700000008000000090000000a0000000b0000000c000000
+  fruitsZ: -1
   particlesZ: -2
   particlesContainer: {fileID: 0}
   particleFruitCollision: {fileID: 6987507487515563280, guid: cd7341f34cba4094b8a2bb7e8db48ac1, type: 3}
@@ -70,6 +71,9 @@ MonoBehaviour:
   SFX_fruit10Murge: {fileID: 8300000, guid: 55c93d26f3c6c2740b6704d427fc1887, type: 3}
   score: 0
   textScore: {fileID: 0}
+  nextFruit: {fileID: 0}
+  nextFruitDisplay: {fileID: 0}
   readyToDrop: 1
   gameLost: 0
   fruitDestryScaleIncrement: 0.05
+  textGameVersion: {fileID: 0}
