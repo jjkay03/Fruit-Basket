@@ -42,7 +42,6 @@ public class GameManager : MonoBehaviour {
     public bool gameLost = false;
     public bool murgedFruitKeepMovement = true;
     public float fruitDestroyScaleIncrement = 0.05f;
-    public TextMeshProUGUI textGameVersion;
 
     // Private
     private bool hasGameLostBeenCalled = false;
@@ -51,9 +50,6 @@ public class GameManager : MonoBehaviour {
     /* ------------------------------- Unity Func ------------------------------- */
     // Start is called before the first frame update
     void Start() {
-        // Set game version text
-        textGameVersion.text = Application.productName + " " + Application.version;
-
         // Create fruit order list
         fruitsOrder = new GameObject[] { fruit0, fruit1, fruit2, fruit3, fruit4, fruit5, fruit6, fruit7, fruit8, fruit9, fruit10 };
         // Create starting fruit queue
