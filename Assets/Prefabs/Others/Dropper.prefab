@@ -135,7 +135,7 @@ MonoBehaviour:
   dropperLine: {fileID: 3755896305146069340}
   maxLeftX: -1.6
   maxRightX: 1.6
-  moveSpeed: 5
+  moveSpeed: 25
   fruitZ: -1
   fruitsContainer: {fileID: 0}
   dropFruit: {fileID: 0}

@@ -25,6 +25,11 @@ public class Dropper : MonoBehaviour {
 
     private GameManager gameManager;
 
+    /* Touch input variables */
+    private Vector2 touchStartPosition;
+    private bool isSwiping = false;
+    private float swipeThreshold = 50f;
+    private float touchStartTime;
 
     /* ------------------------------- Unity Func ------------------------------- */
     // Start is called before the first frame update
@@ -38,9 +43,9 @@ public class Dropper : MonoBehaviour {
 
     // Update is called once per frame
     void Update() {
-        // Functions that contently run
-        PlayerImputMoveDropper();
-        PlayerImputDrop();
+        // Functions that constantly run
+        PlayerInputMoveDropper();
+        PlayerInputDrop();
         HideLine();
 
         // Check for drop fruit colliding
@@ -52,17 +57,16 @@ public class Dropper : MonoBehaviour {
         }
     }
 
-    
     /* -------------------------------- Functions ------------------------------- */
-    // Function that deals with player imputs for dropper movement
-    void PlayerImputMoveDropper() {
-        // Stop taking imput if game lost or paused
+    // Function that deals with player inputs for dropper movement
+    void PlayerInputMoveDropper() {
+        // Stop taking input if game lost or paused
         if (gameManager.gameLost || PauseMenu.GAME_PAUSED) return;
         
-        // Get droper position
+        // Get dropper position
         Vector3 position = transform.position;
 
-        // Check for left key presses
+        // Check for left and right key presses (for keyboard)
         foreach (KeyCode key in leftKey) {
             if (Input.GetKey(key)) {
                 position.x -= moveSpeed * Time.deltaTime;
@@ -70,11 +74,44 @@ public class Dropper : MonoBehaviour {
             }
         }
 
-        // Check for right key presses
         foreach (KeyCode key in rightKey) {
             if (Input.GetKey(key)) {
                 position.x += moveSpeed * Time.deltaTime;
                 break; // Move right if any right key is pressed
+            }
+        }
+
+        // Check for touch input (for mobile)
+        if (Input.touchCount > 0) {
+            Touch touch = Input.GetTouch(0);
+            Vector2 touchPosition = touch.position;
+
+            switch (touch.phase) {
+                case TouchPhase.Began:
+                    touchStartPosition = touchPosition;
+                    touchStartTime = Time.time;
+                    isSwiping = false;
+                    break;
+
+                case TouchPhase.Moved:
+                    float touchDelta = touchPosition.x - touchStartPosition.x;
+                    if (Mathf.Abs(touchDelta) > swipeThreshold) {
+                        isSwiping = true;
+                        if (touchDelta > 0) {
+                            position.x += moveSpeed * Time.deltaTime; // Move right
+                        } else {
+                            position.x -= moveSpeed * Time.deltaTime; // Move left
+                        }
+                        touchStartPosition = touchPosition; // Update start position
+                    }
+                    break;
+
+                case TouchPhase.Ended:
+                    float touchDuration = Time.time - touchStartTime;
+                    if (!isSwiping && touchDuration < 0.2f) {
+                        DropFruit(); // Consider it a tap and drop the fruit
+                    }
+                    break;
             }
         }
 
@@ -85,12 +122,12 @@ public class Dropper : MonoBehaviour {
         transform.position = position;
     }
 
-    // Function that handles player imput for dropping
-    void PlayerImputDrop() {
-        // Stop taking imput if game lost or paused
+    // Function that handles player input for dropping
+    void PlayerInputDrop() {
+        // Stop taking input if game lost or paused
         if (gameManager.gameLost || PauseMenu.GAME_PAUSED) return;
 
-        // Check for drop key presses
+        // Check for drop key presses (for keyboard)
         foreach (KeyCode key in dropKey) {
             if (Input.GetKeyDown(key)) {
                 if (!gameManager.readyToDrop) break; // End if not ready to drop
@@ -99,7 +136,7 @@ public class Dropper : MonoBehaviour {
         }
     }
 
-    // Place the drop fruit on the droper
+    // Place the drop fruit on the dropper
     void PlaceDropFruit() {
         // Take the first fruit in the queue
         GameObject firstFruitInQueue = gameManager.fruitsQueue[0];
@@ -124,7 +161,7 @@ public class Dropper : MonoBehaviour {
         // Reset dropFruitCollided
         dropFruitCollided = false;
 
-        // Drop fruit (Change parrent and enable simulated on rb2d)
+        // Drop fruit (Change parent and enable simulated on rb2d)
         dropFruit.transform.SetParent(fruitsContainer.transform);
         dropFruit.GetComponent<Rigidbody2D>().simulated = true;
 
