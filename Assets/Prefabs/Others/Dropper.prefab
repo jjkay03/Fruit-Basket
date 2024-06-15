@@ -26,8 +26,8 @@ Transform:
   m_GameObject: {fileID: 3755896305146069340}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.3, z: 1}
-  m_LocalScale: {x: 0.05, y: 8.8, z: 0.5}
+  m_LocalPosition: {x: 0, y: -1.3, z: 1}
+  m_LocalScale: {x: 0.05, y: 5.35, z: 0.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 9019890792391193220}
@@ -133,8 +133,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dropperBody: {fileID: 8766402732586124917}
   dropperLine: {fileID: 3755896305146069340}
-  maxLeftX: -3
-  maxRightX: 3
+  maxLeftX: -1.6
+  maxRightX: 1.6
   moveSpeed: 5
   fruitZ: -1
   fruitsContainer: {fileID: 0}
@@ -172,8 +172,8 @@ Transform:
   m_GameObject: {fileID: 6772383027748668274}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.851, y: 4.354, z: 0}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_LocalPosition: {x: 0.61, y: 1.67, z: 0}
+  m_LocalScale: {x: 0.4, y: 0.4, z: 0.4}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 9019890792391193220}
@@ -254,7 +254,7 @@ Animator:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6772383027748668274}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: 5cdc5d0c1f82426489694f7e273d1645, type: 2}
   m_CullingMode: 0
@@ -293,7 +293,7 @@ Transform:
   m_GameObject: {fileID: 8766402732586124917}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 4.2, z: 1}
+  m_LocalPosition: {x: 0, y: 1.47, z: 1}
   m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
   m_ConstrainProportionsScale: 0
   m_Children: []

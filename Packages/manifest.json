@@ -3,6 +3,7 @@
     "com.unity.2d.sprite": "1.0.0",
     "com.unity.2d.spriteshape": "9.0.3",
     "com.unity.collab-proxy": "2.3.1",
+    "com.unity.device-simulator.devices": "1.0.0",
     "com.unity.feature.development": "1.0.1",
     "com.unity.textmeshpro": "3.0.6",
     "com.unity.timeline": "1.7.6",
