@@ -133,9 +133,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dropperBody: {fileID: 8766402732586124917}
   dropperLine: {fileID: 3755896305146069340}
-  maxLeftX: -1.6
-  maxRightX: 1.6
-  moveSpeed: 25
+  maxLeftX: -1.8
+  maxRightX: 1.8
+  moveSpeed: 3
   fruitZ: -1
   fruitsContainer: {fileID: 0}
   dropFruit: {fileID: 0}

@@ -26,10 +26,12 @@ public class Dropper : MonoBehaviour {
     private GameManager gameManager;
 
     /* Touch input variables */
-    private Vector2 touchStartPosition;
+    private Vector2 previousTouchPosition;
+    private bool isTouching = false;
     private bool isSwiping = false;
-    private float swipeThreshold = 50f;
     private float touchStartTime;
+    private float swipeThreshold = 50f;
+    private float tapThreshold = 0.2f;
 
     /* ------------------------------- Unity Func ------------------------------- */
     // Start is called before the first frame update
@@ -88,27 +90,27 @@ public class Dropper : MonoBehaviour {
 
             switch (touch.phase) {
                 case TouchPhase.Began:
-                    touchStartPosition = touchPosition;
+                    previousTouchPosition = touchPosition;
                     touchStartTime = Time.time;
+                    isTouching = true;
                     isSwiping = false;
                     break;
 
                 case TouchPhase.Moved:
-                    float touchDelta = touchPosition.x - touchStartPosition.x;
-                    if (Mathf.Abs(touchDelta) > swipeThreshold) {
-                        isSwiping = true;
-                        if (touchDelta > 0) {
-                            position.x += moveSpeed * Time.deltaTime; // Move right
-                        } else {
-                            position.x -= moveSpeed * Time.deltaTime; // Move left
+                    if (isTouching) {
+                        Vector2 touchDelta = touchPosition - previousTouchPosition;
+                        if (Mathf.Abs(touchDelta.x) > swipeThreshold) {
+                            isSwiping = true;
                         }
-                        touchStartPosition = touchPosition; // Update start position
+                        position.x += touchDelta.x * moveSpeed * Time.deltaTime * 0.1f; // Adjusting scale for smoother movement
+                        previousTouchPosition = touchPosition; // Update previous touch position
                     }
                     break;
 
                 case TouchPhase.Ended:
+                    isTouching = false;
                     float touchDuration = Time.time - touchStartTime;
-                    if (!isSwiping && touchDuration < 0.2f) {
+                    if (!isSwiping && touchDuration < tapThreshold) {
                         DropFruit(); // Consider it a tap and drop the fruit
                     }
                     break;

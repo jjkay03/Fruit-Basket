@@ -2768,6 +2768,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 2856862900371785126, guid: ce1bf8606de55a94fb567ede1596c180, type: 3}
+      propertyPath: moveSpeed
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2856862900371785126, guid: ce1bf8606de55a94fb567ede1596c180, type: 3}
       propertyPath: fruitsContainer
       value: 
       objectReference: {fileID: 1302169041}
