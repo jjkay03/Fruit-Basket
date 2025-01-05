@@ -6,8 +6,7 @@ Fruit Basket is a reacreation of [Suika Game](https://www.nintendo.com/store/pro
 <br> </br>
 
 ## How to play:
-To test the game you can either download the latest release from the [releases](https://github.com/jjkay03/Fruit-Basket/releases) section of this page or play it using the Unity Play WebGL build.
-### [Test Game Here](https://play.unity.com/mg/other/webgl-build-1316) (WebGL build)
+To test the game you can either download the latest release from the [releases](https://github.com/jjkay03/Fruit-Basket/releases) section of this page.
 <br> </br>
 
 ## Game play:
