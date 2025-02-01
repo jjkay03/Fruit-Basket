@@ -141,7 +141,7 @@ public class GameManager : MonoBehaviour {
             // Calculate average velocity
             Rigidbody2D selfRb = selfFruit.GetComponent<Rigidbody2D>();
             Rigidbody2D otherRb = otherFruit.GetComponent<Rigidbody2D>();
-            Vector2 averageVelocity = (selfRb.velocity + otherRb.velocity) / 2f;
+            Vector2 averageVelocity = (selfRb.linearVelocity + otherRb.linearVelocity) / 2f;
             float averageAngularVelocity = (selfRb.angularVelocity + otherRb.angularVelocity) / 2f;    
             
             // Spawn the mergedFruit at the midpoint position
@@ -152,7 +152,7 @@ public class GameManager : MonoBehaviour {
             if (murgedFruitKeepMovement) {
                 Rigidbody2D mergedRb = mergedFruit.GetComponent<Rigidbody2D>();
                 if (mergedRb != null) {
-                    mergedRb.velocity = averageVelocity;
+                    mergedRb.linearVelocity = averageVelocity;
                     mergedRb.angularVelocity = averageAngularVelocity;
                 }
             }
