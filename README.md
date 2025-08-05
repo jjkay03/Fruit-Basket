@@ -2,11 +2,13 @@
 
 Unity version being used: `2022.3.27f1` `LTS`
 
-Fruit Basket is a reacreation of [Suika Game](https://www.nintendo.com/store/products/suika-game-switch/) in Unity.
+Fruit Basket is a recreation of [Suika Game](https://www.nintendo.com/store/products/suika-game-switch/) in Unity.
 <br> </br>
 
 ## How to play:
 To test the game you can either download the latest release from the [releases](https://github.com/jjkay03/Fruit-Basket/releases) section of this page.
+
+Or directly play the WebGL build in your browser on the itch.io page: [https://jjkay03.itch.io/fruit-basket](https://jjkay03.itch.io/fruit-basket)
 <br> </br>
 
 ## Game play:
